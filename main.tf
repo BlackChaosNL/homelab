@@ -2,7 +2,6 @@ module "system_globals" {
   source = "./modules/00-globals/system"
 }
 
-// Application services
 module "services" {
   source = "./services"
 }
