@@ -17,7 +17,7 @@ This module is typically called by application-specific modules rather than used
 
 ```hcl
 module "my_service" {
-  source = "../../10-services-generic/docker-service"
+  source = "../../10-generic/docker-service"
 
   container_name = "my-service"
   image          = "organization/image"

@@ -100,7 +100,7 @@ resource "local_file" "caddyfile" {
 
 
 module "caddy" {
-  source = "../../10-services-generic/docker-service"
+  source = "../../10-generic/docker-service"
 
   container_name = local.container_name
   image          = "caddy"
