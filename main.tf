@@ -7,6 +7,10 @@ module "services" {
   source = "./services"
 }
 
+locals {
+  volume_host = "${module.system_globals.volume_host}/appdata"
+}
+
 module "caddy" {
   source              = "./modules/01-networking/caddy-service"
   volume_path         = "./docker/infrastructure/"

@@ -1,22 +1,8 @@
 output "service_definitions" {
   description = "Service definitions for all services"
   value = [
-    module.actualbudget.service_definition,
-    module.affine.service_definition,
-    module.calibre.service_definition,
-    module.copyparty.service_definition,
-    module.crawl4ai.service_definition,
-    module.emulatorjs.service_definition,
-    module.glance.service_definition,
-    module.linkwarden.service_definition,
-    module.n8n.service_definition,
-    module.n8n.n8n_mcp_service_definition,
-    module.nocodb.service_definition,
-    module.ntfy.service_definition,
-    module.portainer.service_definition,
-    module.pterodactyl_wings.service_definition,
-    module.pterodactyl_panel.service_definition,
-    module.searxng.service_definition
+    module.jellyfin.service_definition,
+    module.freeipa.service_definition,
   ]
 }
 

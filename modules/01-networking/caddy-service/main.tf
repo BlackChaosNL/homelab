@@ -95,7 +95,7 @@ resource "docker_volume" "caddy_config" {
 // Create Caddyfile in the volume path
 resource "local_file" "caddyfile" {
   content  = local.caddyfile_content
-  filename = "${var.volume_path}/caddy/Caddyfile"
+  filename = "${var.volume_path}/${image}/Caddyfile"
 }
 
 

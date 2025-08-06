@@ -1,5 +1,3 @@
-// Generic Docker service module
-// Creates and manages a Docker container with configurable options
 module "system_globals" {
   source = "../../00-globals/system"
 }
