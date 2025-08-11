@@ -1,8 +1,8 @@
 
 variable "image_tag" {
-  description = "The tag for the freeipa container image. Default: Latest"
+  description = "The tag for the freeipa container image. Default: latest-alpine-rootless"
   type        = string
-  default     = "rocky-9"
+  default     = "latest-alpine-rootless"
 }
 
 variable "volume_path" {
@@ -32,9 +32,4 @@ variable "timezone" {
   description = "Timezone for the container"
   type        = string
   default     = "Europe/Helsinki"
-}
-
-variable "admin_password" {
-  description = "Default password for logging into the IPA admin account"
-  type        = string
 }

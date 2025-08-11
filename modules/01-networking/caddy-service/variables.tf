@@ -16,10 +16,8 @@ variable "volume_path" {
 }
 
 variable "domains" {
-  description = "Which domain name to use for services"
-  type        = list(object({
-    name = string
-  }))
+  description = "Which domain names to use for services"
+  type        = list(string)
 }
 
 variable "tls_email" {

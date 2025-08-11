@@ -25,7 +25,6 @@ locals {
           site_address          = "${subdomain}.${domain}"
           endpoint              = service.endpoint
           service_name          = service.name
-          tls_email             = var.tls_email
           has_custom_config     = service.caddy_config != ""
           custom_config         = service.caddy_config
           reverse_proxy_options = service.caddy_options
@@ -62,7 +61,7 @@ locals {
   EOT
 
   // Generate the main Caddyfile content
-  caddyfile_content = merge(local.caddyfile_default, join("\n\n", [
+  caddyfile_content = format("%s%s", local.caddyfile_default, join("\n\n", [
     for site in local.caddy_site_configs :
     site.has_custom_config ?
     // Use the custom Caddy config if provided
@@ -95,7 +94,7 @@ resource "docker_volume" "caddy_config" {
 // Create Caddyfile in the volume path
 resource "local_file" "caddyfile" {
   content  = local.caddyfile_content
-  filename = "${var.volume_path}/${image}/Caddyfile"
+  filename = "${var.volume_path}/${local.container_name}/Caddyfile"
 }
 
 
@@ -108,17 +107,17 @@ module "caddy" {
 
   volumes = [
     {
-      host_path      = "${var.volume_path}/${image}/data"
+      host_path      = "${var.volume_path}/${local.container_name}/data"
       container_path = "/data"
       read_only      = false
     },
     {
-      host_path      = "${var.volume_path}/${image}/config"
+      host_path      = "${var.volume_path}/${local.container_name}/config"
       container_path = "/config"
       read_only      = false
     },
     {
-      host_path      = "${var.volume_path}/${image}/Caddyfile"
+      host_path      = "${var.volume_path}/${local.container_name}/Caddyfile"
       container_path = "/etc/caddy/Caddyfile"
       read_only      = true
     }

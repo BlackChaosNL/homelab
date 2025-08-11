@@ -16,9 +16,9 @@ module "homelab_docker_network" {
   subnet     = "10.88.0.0/16"
 }
 
-module "freeipa" {
+module "lldap" {
   source = "${local.module_dir}/30-services-software/lldap-service"
-  volume_path = "${local.volume_path}/freeipa"
+  volume_path = "${local.root_volume}/lldap"
   networks = [
     module.homelab_docker_network.name
   ]
@@ -26,7 +26,7 @@ module "freeipa" {
 
 module "jellyfin" {
   source = "${local.module_dir}/20-services-entertainment/jellyfin-service"
-  volume_path = "${local.volume_path}/jellyfin"
+  volume_path = "${local.root_volume}/jellyfin"
   networks = [
     module.homelab_docker_network.name
   ]

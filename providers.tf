@@ -1,6 +1,6 @@
 terraform {
   required_providers {
-    podman = {
+    docker = {
       source  = "kreuzwerker/docker"
       version = "~> 3.6.0"
     }
@@ -13,4 +13,8 @@ terraform {
       version = "1.2.5"
     }
   }
+}
+
+provider "docker" {
+  host = provider::dotenv::get_by_key("DOCKER_SOCK", "${path.module}/.env")
 }

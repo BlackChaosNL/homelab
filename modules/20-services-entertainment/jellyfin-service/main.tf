@@ -8,8 +8,8 @@ terraform {
 
 locals {
   container_name          = "jellyfin"
-  jellyfin_image           = "docker.io/jellyfin/jellyfin"
-  jellyfin_tag             = var.image_tag
+  jellyfin_image          = "docker.io/jellyfin/jellyfin"
+  jellyfin_tag            = var.image_tag
   env_file                = "${path.module}/.env"
   jellyfin_internal_port  = 8096
 
@@ -20,11 +20,13 @@ locals {
       read_only      = true
     },
     {
-      host_path      = "${volume_path}/${container_name}/config"
+      host_path      = "${var.volume_path}/${local.container_name}/config"
       container_path = "/config"
+      read_only      = false
     },{
-      host_path      = "${volume_path}/${container_name}/cache"
+      host_path      = "${var.volume_path}/${local.container_name}/cache"
       container_path = "/cache"
+      read_only      = false
     },
   ]
 

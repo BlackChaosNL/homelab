@@ -12,14 +12,14 @@ locals {
 
 module "caddy" {
   source              = "./modules/01-networking/caddy-service"
-  volume_path         = "./docker/infrastructure/"
+  volume_path         = "${local.volume_host}"
   domains             = [
     "blackchaosnl.duckdns.org",
     "blackchaosnl.myaddr.io",
     "blackchaosnl.myaddr.dev",
     "blackchaosnl.myaddr.tools"
   ]
-  tls_email           = "your-email@example.com"  # For Let's Encrypt
+  tls_email           = "jjvijgen@gmail.com"
   container_name      = "caddy"
   service_definitions = module.services.service_definitions
   networks            = ["default"]
