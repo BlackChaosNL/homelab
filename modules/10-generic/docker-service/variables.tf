@@ -83,12 +83,6 @@ variable "labels" {
   default     = {}
 }
 
-variable "managed_by_caddy" {
-  description = "Enable mounting container through labels"
-  type        = bool
-  default     = true
-}
-
 variable "host_mappings" {
   description = "Additional host mappings for the container (/etc/hosts entries)"
   type = list(object({

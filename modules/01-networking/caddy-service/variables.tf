@@ -34,6 +34,7 @@ variable "service_definitions" {
     publish_via   = optional(string)
     caddy_config  = optional(string, "")
     caddy_options = optional(map(string), {})
+    is_guarded    = optional(bool, false)
   }))
 }
 
