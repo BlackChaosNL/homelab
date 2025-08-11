@@ -50,11 +50,8 @@ locals {
       -via
       
       Permissions-Policy interest-cohort=()
-
       Strict-Transport-Security "max-age=31536000; includesSubDomains; preload"
-
       X-Content-Type-Options "nosniff"
-
       X-Frame-Options DENY
     }
   }
