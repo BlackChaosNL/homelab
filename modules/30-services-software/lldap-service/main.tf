@@ -49,6 +49,5 @@ output "service_definition" {
     primary_port = local.lldap_internal_port
     endpoint     = "http://${local.container_name}:${local.lldap_internal_port}"
     subdomains   = ["users"]
-    ports        = []
   }
 }

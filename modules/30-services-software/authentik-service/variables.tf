@@ -1,8 +1,8 @@
 
 variable "image_tag" {
-  description = "The tag for the LLDAP container image. Default: latest-alpine-rootless"
+  description = "The tag for the freeipa container image. Default: 2025.6.3"
   type        = string
-  default     = "latest-alpine-rootless"
+  default     = "2025.6.3"
 }
 
 variable "volume_path" {

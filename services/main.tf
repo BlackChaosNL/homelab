@@ -24,6 +24,14 @@ module "lldap" {
   ]
 }
 
+module "authentik" {
+  source = "${local.module_dir}/30-services-software/authentik-service"
+  volume_path = "${local.root_volume}/authentik"
+  networks = [
+    module.homelab_docker_network.name
+  ]
+}
+
 module "jellyfin" {
   source = "${local.module_dir}/20-services-entertainment/jellyfin-service"
   volume_path = "${local.root_volume}/jellyfin"
