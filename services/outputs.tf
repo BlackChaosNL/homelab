@@ -3,6 +3,7 @@ output "service_definitions" {
   value = [
     module.jellyfin.service_definition,
     module.lldap.service_definition,
+    module.authentik.service_definition,
   ]
 }
 
