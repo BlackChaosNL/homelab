@@ -24,6 +24,14 @@ module "authentik" {
   ]
 }
 
+module "traccar" {
+  source = "${local.module_dir}/30-services-software/traccar-service"
+  volume_path = "${local.root_volume}/traccar"
+  networks = [
+    "blue",
+  ]
+}
+
 module "jellyfin" {
   source = "${local.module_dir}/20-services-entertainment/jellyfin-service"
   volume_path = "${local.root_volume}/jellyfin"

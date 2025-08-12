@@ -7,7 +7,7 @@ terraform {
 }
 
 locals {
-  container_name          = "authentik-test"
+  container_name          = "authentik"
   redis_container_name    = "authentik-redis"
   postgres_container_name = "authentik-postgres"
   authentik_image         = "ghcr.io/goauthentik/server"
