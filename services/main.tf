@@ -32,6 +32,14 @@ module "traccar" {
   ]
 }
 
+module "tandoor" {
+  source = "${local.module_dir}/30-services-software/tandoor-service"
+  volume_path = "${local.root_volume}/tandoor"
+  networks = [
+    "blue",
+  ]
+}
+
 module "jellyfin" {
   source = "${local.module_dir}/20-services-entertainment/jellyfin-service"
   volume_path = "${local.root_volume}/jellyfin"

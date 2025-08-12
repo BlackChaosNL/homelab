@@ -14,8 +14,8 @@ locals {
   redis_image             = "docker.io/library/redis"
   postgres_image          = "docker.io/library/postgres"
   authentik_tag           = var.image_tag
-  redis_tag               = "alpine"
-  postgres_tag            = "17-alpine"
+  redis_tag               = var.redis_image_tag
+  postgres_tag            = var.postgres_image_tag
   env_file                = "${path.module}/.env"
   authentik_internal_port = 9000
 
@@ -60,7 +60,7 @@ locals {
   postgres_env_vars = {
     POSTGRES_PASSWORD                = provider::dotenv::get_by_key("AUTHENTIK_POSTGRESQL__PASSWORD", local.env_file)
     POSTGRES_USER                    = provider::dotenv::get_by_key("AUTHENTIK_POSTGRESQL__USER", local.env_file)
-    POSTGRES_DB                      = provider::dotenv::get_by_key("AUTHENTIK_POSTGRESQL__PASSWORD", local.env_file)
+    POSTGRES_DB                      = provider::dotenv::get_by_key("AUTHENTIK_POSTGRESQL__DB", local.env_file)
   }
 }
 

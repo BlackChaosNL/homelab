@@ -1,14 +1,7 @@
-
 variable "image_tag" {
-  description = "The tag for the authentik container image. Default: 2025.6.3"
+  description = "The tag for the JellyFin container image. Default: Latest"
   type        = string
-  default     = "2025.6.3"
-}
-
-variable "redis_image_tag" {
-  description = "The tag for the redis container image. Default: 2025.6.3"
-  type        = string
-  default     = "alpine"
+  default     = "latest"
 }
 
 variable "postgres_image_tag" {
