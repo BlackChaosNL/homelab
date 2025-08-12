@@ -27,12 +27,10 @@ The project is organized as follows:
 homelab/
 ├── .gitignore                # Files and directories to ignore
 ├── README.md                 # This file
-│
 ├── main.tf                   # Root module: orchestrates module calls
 ├── variables.tf              # Root module: global input variables
 ├── outputs.tf                # Root module: global outputs
 ├── providers.tf              # Root module: provider configurations
-│
 ├── modules/                  # Local modules for different components
 ├───┐
 │   ├── 00-globals/           # Optional: Global data sources/locals
