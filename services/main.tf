@@ -8,19 +8,11 @@ module "system_globals" {
   source = "${local.module_dir}/00-globals/system"
 }
 
-module "homelab_docker_network" {
-  source     = "${local.module_dir}/01-networking/network-service"
-  name       = "blue"
-  driver     = "bridge"
-  attachable = true
-  subnet     = "10.255.0.0/16"
-}
-
 module "authentik" {
   source = "${local.module_dir}/30-services-software/authentik-service"
   volume_path = "${local.root_volume}/authentik"
   networks = [
-    "blue",
+    "podman",
   ]
 }
 
@@ -28,7 +20,7 @@ module "traccar" {
   source = "${local.module_dir}/30-services-software/traccar-service"
   volume_path = "${local.root_volume}/traccar"
   networks = [
-    "blue",
+    "podman",
   ]
 }
 
@@ -36,7 +28,7 @@ module "tandoor" {
   source = "${local.module_dir}/30-services-software/tandoor-service"
   volume_path = "${local.root_volume}/tandoor"
   networks = [
-    "blue",
+    "podman",
   ]
 }
 
@@ -44,7 +36,7 @@ module "jellyfin" {
   source = "${local.module_dir}/20-services-entertainment/jellyfin-service"
   volume_path = "${local.root_volume}/jellyfin"
   networks = [
-    "blue",
+    "podman",
   ]
 }
 
@@ -52,7 +44,7 @@ module "qbittorrent" {
   source = "${local.module_dir}/30-services-software/qbittorrent-service"
   volume_path = "${local.root_volume}/qbittorrent"
   networks = [
-    "blue",
+    "podman",
   ]
 }
 
@@ -60,7 +52,7 @@ module "coder" {
   source = "${local.module_dir}/30-services-software/coder-service"
   volume_path = "${local.root_volume}/coder"
   networks = [
-    "blue",
+    "podman",
   ]
 }
 
@@ -68,6 +60,6 @@ module "calibre" {
   source = "${local.module_dir}/20-services-entertainment/calibre-service"
   volume_path = "${local.root_volume}/calibre"
   networks = [
-    "blue",
+    "podman",
   ]
 }
