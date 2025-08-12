@@ -13,14 +13,14 @@ module "homelab_docker_network" {
   name       = "blue"
   driver     = "bridge"
   attachable = true
-  subnet     = "10.88.0.0/16"
+  subnet     = "10.255.0.0/16"
 }
 
 module "authentik" {
   source = "${local.module_dir}/30-services-software/authentik-service"
   volume_path = "${local.root_volume}/authentik"
   networks = [
-    module.homelab_docker_network.name
+    "blue",
   ]
 }
 
@@ -28,6 +28,6 @@ module "jellyfin" {
   source = "${local.module_dir}/20-services-entertainment/jellyfin-service"
   volume_path = "${local.root_volume}/jellyfin"
   networks = [
-    module.homelab_docker_network.name
+    "blue",
   ]
 }
