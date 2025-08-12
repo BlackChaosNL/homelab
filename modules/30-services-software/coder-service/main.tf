@@ -9,7 +9,7 @@ terraform {
 locals {
   container_name             = "coder"
   postgres_container_name    = "coder-postgres"
-  coder_image                = "lscr.io/linuxserver/coder"
+  coder_image                = "ghcr.io/coder/coder"
   postgres_image             = "docker.io/library/postgres"
   coder_tag                  = var.image_tag
   postgres_tag               = var.postgres_image_tag
@@ -70,10 +70,6 @@ module "coder" {
   env_vars       = local.coder_env_vars
   networks       = concat(var.networks)
   restart_policy = "always"
-  labels         = [{
-    label = "run.oci.keep_original_groups"
-    value = "1"
-  }]
   security_opts = [
     "label:type:container_runtype_t"
   ]
