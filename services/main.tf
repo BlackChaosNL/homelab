@@ -10,7 +10,7 @@ module "system_globals" {
 
 module "homelab_docker_network" {
   source     = "${local.module_dir}/01-networking/network-service"
-  name       = "default"
+  name       = "blue"
   driver     = "bridge"
   attachable = true
   subnet     = "10.88.0.0/16"
