@@ -7,7 +7,7 @@ terraform {
 }
 
 locals {
-  container_name          = "jellyfin"
+  container_name          = "jellyfin-test"
   jellyfin_image          = "docker.io/jellyfin/jellyfin"
   jellyfin_tag            = var.image_tag
   env_file                = "${path.module}/.env"

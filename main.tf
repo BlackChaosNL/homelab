@@ -20,7 +20,7 @@ module "caddy" {
     "blackchaosnl.myaddr.tools"
   ]
   tls_email           = "jjvijgen@gmail.com"
-  container_name      = "caddy"
+  container_name      = "caddy-test"
   service_definitions = module.services.service_definitions
   networks            = [
     "default",
