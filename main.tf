@@ -23,7 +23,7 @@ module "caddy" {
   container_name      = "caddy-test"
   service_definitions = module.services.service_definitions
   networks            = [
-    "default",
+    "podman",
     "blue"
   ]
 }
