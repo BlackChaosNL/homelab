@@ -32,16 +32,12 @@ homelab/
 ├── variables.tf              # Root module: global input variables
 ├── outputs.tf                # Root module: global outputs
 ├── providers.tf              # Root module: provider configurations
-├── versions.tf               # Root module: OpenTofu & provider version constraints
-├── terraform.tfvars.example  # Example variables file
 │
 ├── modules/                  # Local modules for different components
 ├───┐
 │   ├── 00-globals/           # Optional: Global data sources/locals
 │   ├── 01-networking/
 │   │   ├── docker-network/
-│   │   ├── cloudflare-dns-record/
-│   │   └── cloudflared-tunnel/
 │   ├── 10-generic/
 │   │   └── docker-service/   # Generic module for deploying Docker containers
 │   └── 20-services-entertainment/     # Application-specific wrapper modules
