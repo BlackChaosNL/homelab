@@ -96,7 +96,7 @@ module "authentik-server" {
 
 module "authentik-worker" {
     source         = "../../10-generic/docker-service"
-    container_name = local.container_name
+    container_name = "${local.container_name}-worker"
     image          = local.authentik_image
     tag            = local.authentik_tag
     volumes        = local.authentik_volumes
