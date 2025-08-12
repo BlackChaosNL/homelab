@@ -12,6 +12,7 @@ locals {
   jellyfin_tag            = var.image_tag
   env_file                = "${path.module}/.env"
   jellyfin_internal_port  = 8096
+  gpus                    = "all"
 
   jellyfin_volumes = [
     {
@@ -44,6 +45,7 @@ module "jellyfin" {
   tag            = local.jellyfin_tag
   volumes        = local.jellyfin_volumes
   env_vars       = local.jellyfin_env_vars
+  gpus           = local.gpus
   networks       = concat(var.networks)
   restart_policy = "always"
 }

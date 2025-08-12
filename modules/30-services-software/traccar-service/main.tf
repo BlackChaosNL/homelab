@@ -32,7 +32,7 @@ locals {
   EOT
 }
 
-resource "local_file" "caddyfile" {
+resource "local_file" "traccar_config_file" {
   content  = local.traccar_content
   filename = "${var.volume_path}/${local.container_name}/traccar.xml"
 }

@@ -48,6 +48,22 @@ module "jellyfin" {
   ]
 }
 
+module "qbittorrent" {
+  source = "${local.module_dir}/30-services-software/qbittorrent-service"
+  volume_path = "${local.root_volume}/qbittorrent"
+  networks = [
+    "blue",
+  ]
+}
+
+module "coder" {
+  source = "${local.module_dir}/30-services-software/coder-service"
+  volume_path = "${local.root_volume}/coder"
+  networks = [
+    "blue",
+  ]
+}
+
 module "calibre" {
   source = "${local.module_dir}/20-services-entertainment/calibre-service"
   volume_path = "${local.root_volume}/calibre"

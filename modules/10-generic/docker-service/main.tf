@@ -43,9 +43,6 @@ locals {
       read_only      = volume.read_only
     }
   ]
-
-  // Merge provided labels with monitoring labels
-  merged_labels = merge(var.labels)
 }
 
 // Pull the Docker image
@@ -107,7 +104,7 @@ resource "docker_container" "service_container" {
 
   # Set container labels
   dynamic "labels" {
-    for_each = local.merged_labels
+    for_each = var.labels
     content {
       label = labels.key
       value = labels.value
@@ -132,15 +129,18 @@ resource "docker_container" "service_container" {
   cpu_shares  = var.cpu_shares
 
   # Other container options
-  dns         = var.dns
-  dns_search  = var.dns_search
-  hostname    = var.hostname
-  domainname  = var.domainname
-  user        = var.user
-  working_dir = var.working_dir
-  command     = var.command
-  entrypoint  = var.entrypoint
-  privileged  = var.privileged
+  dns           = var.dns
+  dns_search    = var.dns_search
+  hostname      = var.hostname
+  domainname    = var.domainname
+  user          = var.user
+  working_dir   = var.working_dir
+  command       = var.command
+  entrypoint    = var.entrypoint
+  privileged    = var.privileged
+  security_opts = var.security_opts
+  userns_mode   = var.userns_mode
+  gpus          = var.gpus
 
   # Set log options
   log_driver = var.log_driver

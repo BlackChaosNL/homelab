@@ -1,11 +1,11 @@
 variable "image_tag" {
-  description = "The tag for the JellyFin container image. Default: Latest"
+  description = "The tag for the Tandoor container image. Default: Latest"
   type        = string
   default     = "latest"
 }
 
 variable "postgres_image_tag" {
-  description = "The tag for the redis container image. Default: 2025.6.3"
+  description = "The tag for the postgres container image. Default: 17-alpine"
   type        = string
   default     = "17-alpine"
 }

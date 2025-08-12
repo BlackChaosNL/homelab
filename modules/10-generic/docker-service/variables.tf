@@ -1,33 +1,33 @@
 variable "container_name" {
-  description = "Name of the Docker container"
+  description = "Name of the container"
   type        = string
 }
 
 variable "image" {
-  description = "Docker image name"
+  description = "Image name"
   type        = string
 }
 
 variable "tag" {
-  description = "Docker image tag"
+  description = "Image tag"
   type        = string
   default     = "latest"
 }
 
 variable "keep_image_locally" {
-  description = "Whether to keep the Docker image locally after pulling"
+  description = "Whether to keep the image locally after pulling"
   type        = bool
   default     = true
 }
 
 variable "restart_policy" {
-  description = "Docker restart policy (no, always, unless-stopped, on-failure)"
+  description = "Restart policy (no, always, unless-stopped, on-failure)"
   type        = string
   default     = "always"
 }
 
 variable "network_mode" {
-  description = "Docker network mode (bridge, host, etc.)"
+  description = "Network mode (bridge, host, etc.)"
   type        = string
   default     = "bridge"
 }
@@ -78,9 +78,12 @@ variable "pgid" {
 }
 
 variable "labels" {
-  description = "Docker container labels"
-  type        = map(string)
-  default     = {}
+  description = "Container labels"
+  type        = list(object({
+    label = string
+    value = string
+  }))
+  default     = []
 }
 
 variable "host_mappings" {
@@ -177,6 +180,24 @@ variable "privileged" {
   description = "Run container in privileged mode"
   type        = bool
   default     = false
+}
+
+variable "security_opts" {
+  description = "Set's security options for container"
+  type = list(string)
+  default = null
+}
+
+variable "userns_mode" {
+  description = "Set's the USERNS Mode"
+  type = string
+  default = null
+}
+
+variable "gpus" {
+  description = "Set the GPU passthrough"
+  type = string
+  default = null
 }
 
 // Logging options

@@ -1,5 +1,5 @@
 variable "image_tag" {
-  description = "The tag for the JellyFin container image. Default: Latest"
+  description = "The tag for the Calibre container image. Default: Latest"
   type        = string
   default     = "latest"
 }
