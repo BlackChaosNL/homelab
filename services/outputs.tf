@@ -10,8 +10,3 @@ output "service_definitions" {
     module.authentik.service_definition,
   ]
 }
-
-output "homelab_docker_network_name" {
-  description = "The name of the Docker network"
-  value       = module.homelab_docker_network.name
-}
