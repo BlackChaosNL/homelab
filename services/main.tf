@@ -31,3 +31,11 @@ module "jellyfin" {
     "blue",
   ]
 }
+
+module "calibre" {
+  source = "${local.module_dir}/20-services-entertainment/calibre-service"
+  volume_path = "${local.root_volume}/calibre"
+  networks = [
+    "blue",
+  ]
+}
