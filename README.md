@@ -15,9 +15,9 @@ This OpenTofu configuration manages various self-hosted services primarily as Do
 
 Before you begin, ensure you have the following installed and configured:
 
-**OpenTofu:** Version `1.6.0` or higher. [Installation Guide](https://opentofu.org/docs/intro/install/)
-**Git:** For version control.
-**Docker/Podman:** to host containers.
+* **OpenTofu:** Version `1.6.0` or higher. [Installation Guide](https://opentofu.org/docs/intro/install/)
+* **Git:** For version control.
+* **Docker/Podman:** to host containers.
 
 ## Project Structure
 
