@@ -7,7 +7,7 @@ module "services" {
 }
 
 locals {
-  volume_host = "${module.system_globals.volume_host}/appdata"
+  volume_host = "${module.system_globals.volume_host}"
 }
 
 module "caddy" {
@@ -22,5 +22,7 @@ module "caddy" {
   tls_email           = "jjvijgen@gmail.com"
   container_name      = "caddy"
   service_definitions = module.services.service_definitions
-  networks            = ["default"]
+  networks            = [
+    module.services.homelab_docker_network.name
+  ]
 }
