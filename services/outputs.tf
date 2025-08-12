@@ -2,7 +2,6 @@ output "service_definitions" {
   description = "Service definitions for all services"
   value = [
     module.jellyfin.service_definition,
-    module.lldap.service_definition,
     module.authentik.service_definition,
   ]
 }
