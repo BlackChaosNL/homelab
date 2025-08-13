@@ -10,3 +10,8 @@ output "service_definitions" {
     module.authentik.service_definition,
   ]
 }
+
+output "infrastructure_int" {
+  description = "The internal infrastructure network"
+  value = module.infrastructure_int
+}

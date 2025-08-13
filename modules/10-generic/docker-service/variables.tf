@@ -198,11 +198,6 @@ variable "gpus" {
   description = "Set the GPU passthrough"
   type = string
   default = null
-
-  validation {
-    condition = contains([null, "all"], var.gpus)
-    error_message = "Invalid input, can only be: null or 'all'"
-  }
 }
 
 // Logging options
