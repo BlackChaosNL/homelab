@@ -55,6 +55,9 @@ module "coder_network" {
   name   = "coder-network"
   subnet = "172.16.0.16/29"
   driver = "bridge"
+  options = {
+    "isolate": false
+  }
 }
 
 
