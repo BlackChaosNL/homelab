@@ -10,13 +10,6 @@ locals {
   volume_host = "${module.system_globals.volume_host}"
 }
 
-module "infrastructure_ext" {
-  source     = "./modules/01-networking/network-service"
-  name       = "infrastructure_ext"
-  driver     = "host"
-  attachable = true
-}
-
 module "caddy" {
   source              = "./modules/01-networking/caddy-service"
   volume_path         = "${local.volume_host}"
@@ -30,7 +23,6 @@ module "caddy" {
   container_name      = "caddy"
   service_definitions = module.services.service_definitions
   networks            = [
-    module.infrastructure_ext.name,
     module.services.infrastructure_int.name
   ]
 }
