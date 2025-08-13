@@ -57,6 +57,5 @@ output "service_definition" {
     primary_port = local.jellyfin_internal_port
     endpoint     = "http://${local.container_name}:${local.jellyfin_internal_port}"
     subdomains   = ["tv"]
-    is_guarded   = true
   }
 }

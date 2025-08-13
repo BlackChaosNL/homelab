@@ -42,6 +42,9 @@ locals {
   ]
 
   tandoor_env_vars = {
+    SOCIAL_PROVIDERS                 = provider::dotenv::get_by_key("SOCIAL_PROVIDERS", local.env_file)
+    SOCIALACCOUNT_PROVIDERS          = provider::dotenv::get_by_key("SOCIALACCOUNT_PROVIDERS", local.env_file)
+    ENABLE_SIGNUP                    = provider::dotenv::get_by_key("ENABLE_SIGNUP", local.env_file)
     SECRET_KEY                       = provider::dotenv::get_by_key("SECRET_KEY", local.env_file)
     DEBUG                            = provider::dotenv::get_by_key("DEBUG", local.env_file)
     ALLOWED_HOSTS                    = provider::dotenv::get_by_key("ALLOWED_HOSTS", local.env_file)
@@ -98,6 +101,5 @@ output "service_definition" {
     primary_port = local.tandoor_internal_port
     endpoint     = "http://${local.container_name}:${local.tandoor_internal_port}"
     subdomains   = ["tandoor"]
-    is_guarded   = true
   }
 }
