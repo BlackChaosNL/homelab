@@ -22,7 +22,5 @@ module "caddy" {
   tls_email           = "jjvijgen@gmail.com"
   container_name      = "caddy"
   service_definitions = module.services.service_definitions
-  networks            = [
-    "podman"
-  ]
+  networks            = [module.services.infrastructure.name]
 }

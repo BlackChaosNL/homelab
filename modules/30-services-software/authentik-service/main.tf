@@ -68,7 +68,7 @@ module "authentik_network" {
   source = "../../01-networking/network-service"
   name   = "authentik-network"
   subnet = "172.16.0.0/29"
-  driver = "driver"
+  driver = "bridge"
 }
 
 module "authentik-postgres" {

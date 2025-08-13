@@ -54,7 +54,7 @@ module "coder_network" {
   source = "../../01-networking/network-service"
   name   = "coder-network"
   subnet = "172.16.0.16/29"
-  driver = "driver"
+  driver = "bridge"
 }
 
 
