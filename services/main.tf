@@ -9,7 +9,7 @@ module "system_globals" {
 }
 
 module "infrastructure_int" {
-  source     = "./modules/01-networking/network-service"
+  source     = "../modules/01-networking/network-service"
   name       = "infrastructure_int"
   subnet     = "10.100.0.0/24"
   driver     = "bridge"
