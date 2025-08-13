@@ -62,7 +62,7 @@ locals {
 
 module "tandoor_network" {
   source = "../../01-networking/network-service"
-  name   = "coder-network"
+  name   = "tandoor-network"
   subnet = "172.16.0.24/29"
   driver = "bridge"
 }
