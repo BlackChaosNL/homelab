@@ -10,6 +10,7 @@ locals {
   container_name         = "traccar"
   traccar_image          = "docker.io/traccar/traccar"
   traccar_tag            = var.image_tag
+  env_file               = "${path.module}/.env"
   traccar_internal_port  = 8082
 
   traccar_env_vars = {
@@ -23,7 +24,14 @@ locals {
   <!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
   <properties>
     <!-- Documentation: https://www.traccar.org/configuration-file/ -->
-
+    <entry key='openid.clientId'>${provider::dotenv::get_by_key("OPENID_CLIENT_ID", local.env_file)}</entry>
+    <entry key='openid.clientSecret'>${provider::dotenv::get_by_key("OPENID_CLIENT_SECRET", local.env_file)}</entry>
+    <entry key='openid.issuerUrl'>${provider::dotenv::get_by_key("OPENID_ISSUER_URL", local.env_file)}</entry>
+    <entry key='openid.authUrl'>${provider::dotenv::get_by_key("OPENID_AUTH_URL", local.env_file)}</entry>
+    <entry key='openid.tokenUrl'>${provider::dotenv::get_by_key("OPENID_TOKEN_URL", local.env_file)}</entry>
+    <entry key='openid.userInfoUrl'>${provider::dotenv::get_by_key("OPENID_USER_INFO_URL", local.env_file)}</entry>
+    <entry key='openid.allowGroup'>user</entry>
+    <entry key='openid.adminGroup'>admin</entry>
     <entry key='database.driver'>org.h2.Driver</entry>
     <entry key='database.url'>jdbc:h2:./data/database</entry>
     <entry key='database.user'>sa</entry>
