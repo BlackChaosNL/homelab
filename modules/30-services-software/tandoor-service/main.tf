@@ -65,6 +65,9 @@ module "tandoor_network" {
   name   = "tandoor-network"
   subnet = "172.16.0.24/29"
   driver = "bridge"
+  options = {
+    "isolate": false
+  }
 }
 
 module "tandoor-postgres" {
