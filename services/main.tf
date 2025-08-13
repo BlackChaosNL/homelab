@@ -14,6 +14,9 @@ module "infrastructure_int" {
   subnet     = "10.100.0.0/24"
   driver     = "bridge"
   attachable = true
+  options = {
+    "isolate": false
+  }
 }
 
 module "authentik" {
