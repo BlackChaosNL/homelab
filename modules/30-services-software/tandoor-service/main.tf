@@ -60,6 +60,13 @@ locals {
   }
 }
 
+module "tandoor_network" {
+  source = "../../01-networking/network-service"
+  name   = "coder-network"
+  subnet = "172.16.0.24/29"
+  driver = "driver"
+}
+
 module "tandoor-postgres" {
   source         = "../../10-generic/docker-service"
   container_name = local.postgres_name
@@ -67,7 +74,7 @@ module "tandoor-postgres" {
   tag            = local.postgres_tag
   volumes        = local.postgres_volumes
   env_vars       = local.postgres_env_vars
-  networks       = var.networks
+  networks       = [module.tandoor_network.name]
 }
 
 module "tandoor" {
@@ -77,7 +84,7 @@ module "tandoor" {
   tag            = local.tandoor_tag
   volumes        = local.tandoor_volumes
   env_vars       = local.tandoor_env_vars
-  networks       = concat(var.networks)
+  networks       = concat([module.tandoor_network.name], var.networks)
   restart_policy = "always"
 }
 

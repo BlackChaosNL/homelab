@@ -64,6 +64,13 @@ locals {
   }
 }
 
+module "authentik_network" {
+  source = "../../01-networking/network-service"
+  name   = "authentik-network"
+  subnet = "172.16.0.0/29"
+  driver = "driver"
+}
+
 module "authentik-postgres" {
     source         = "../../10-generic/docker-service"
     container_name = local.postgres_container_name
@@ -71,7 +78,7 @@ module "authentik-postgres" {
     tag            = local.postgres_tag
     volumes        = local.postgres_volumes
     env_vars       = local.postgres_env_vars
-    networks       = var.networks
+    networks       = [module.authentik_network.name]
 }
 
 module "authentik-redis" {
@@ -80,7 +87,7 @@ module "authentik-redis" {
     image          = local.redis_image
     tag            = local.redis_tag
     volumes        = local.redis_volumes
-    networks       = var.networks
+    networks       = [module.authentik_network.name]
 }
 
 module "authentik-server" {
@@ -90,7 +97,7 @@ module "authentik-server" {
     tag            = local.authentik_tag
     volumes        = local.authentik_volumes
     env_vars       = local.authentik_env_vars
-    networks       = var.networks
+    networks       = concat([module.authentik_network.name], var.networks)
     command        = ["server"]
 }
 
@@ -101,7 +108,7 @@ module "authentik-worker" {
     tag            = local.authentik_tag
     volumes        = local.authentik_volumes
     env_vars       = local.authentik_env_vars
-    networks       = var.networks
+    networks       = [module.authentik_network.name]
     command        = ["worker"]
 }
 

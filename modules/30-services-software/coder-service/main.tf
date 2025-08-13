@@ -50,6 +50,14 @@ locals {
 
 }
 
+module "coder_network" {
+  source = "../../01-networking/network-service"
+  name   = "coder-network"
+  subnet = "172.16.0.16/29"
+  driver = "driver"
+}
+
+
 module "coder-postgres" {
   source         = "../../10-generic/docker-service"
   container_name = local.postgres_container_name
@@ -57,7 +65,7 @@ module "coder-postgres" {
   tag            = local.postgres_tag
   volumes        = local.postgres_volumes
   env_vars       = local.postgres_env_vars
-  networks       = concat(var.networks)
+  networks       = [module.coder_network.name]
   restart_policy = "always"
 }
 
@@ -68,7 +76,7 @@ module "coder" {
   tag            = local.coder_tag
   volumes        = local.coder_volumes
   env_vars       = local.coder_env_vars
-  networks       = concat(var.networks)
+  networks       = concat([module.coder_network.name], var.networks)
   restart_policy = "always"
   security_opts = [
     "label:type:container_runtype_t"

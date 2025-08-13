@@ -8,11 +8,11 @@ terraform {
 
 locals {
   container_name         = "traccar"
-  calibre_image          = "docker.io/traccar/traccar"
-  calibre_tag            = var.image_tag
-  calibre_internal_port  = 8082
+  traccar_image          = "docker.io/traccar/traccar"
+  traccar_tag            = var.image_tag
+  traccar_internal_port  = 8082
 
-  calibre_env_vars = {
+  traccar_env_vars = {
     PUID        = var.user_id
     PGID        = var.group_id
     TZ          = var.timezone
@@ -37,11 +37,11 @@ resource "local_file" "traccar_config_file" {
   filename = "${var.volume_path}/${local.container_name}/traccar.xml"
 }
 
-module "calibre" {
+module "traccar" {
   source         = "../../10-generic/docker-service"
   container_name = local.container_name
-  image          = local.calibre_image
-  tag            = local.calibre_tag
+  image          = local.traccar_image
+  tag            = local.traccar_tag
   volumes        = [
     {
       host_path      = "${var.volume_path}/${local.container_name}/logs"
@@ -57,7 +57,7 @@ module "calibre" {
       read_only      = true
     },
   ]
-  env_vars       = local.calibre_env_vars
+  env_vars       = local.traccar_env_vars
   networks       = concat(var.networks)
   restart_policy = "always"
 }
@@ -66,8 +66,8 @@ output "service_definition" {
   description = "General service definition with optional ingress configuration"
   value = {
     name         = local.container_name
-    primary_port = local.calibre_internal_port
-    endpoint     = "http://${local.container_name}:${local.calibre_internal_port}"
+    primary_port = local.traccar_internal_port
+    endpoint     = "http://${local.container_name}:${local.traccar_internal_port}"
     subdomains   = ["maps"]
     is_guarded   = true
   }
