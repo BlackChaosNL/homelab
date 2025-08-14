@@ -84,8 +84,8 @@ module "coder" {
   userns_mode    = "keep-id:uid=1000,gid=1000"
   labels         = [
     {
-    label = "run.oci.keep_original_groups"
-    value = "1"
+      key   = "run.oci.keep_original_groups"
+      value = "1"
     }
   ]
   security_opts  = [

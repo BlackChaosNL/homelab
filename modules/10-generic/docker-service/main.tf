@@ -106,7 +106,7 @@ resource "docker_container" "service_container" {
   dynamic "labels" {
     for_each = var.labels
     content {
-      label = labels.label
+      label = labels.key
       value = labels.value
     }
   }

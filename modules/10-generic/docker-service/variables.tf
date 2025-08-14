@@ -80,7 +80,7 @@ variable "pgid" {
 variable "labels" {
   description = "Container labels"
   type        = list(object({
-    label = string
+    key   = string
     value = string
   }))
   default     = []
