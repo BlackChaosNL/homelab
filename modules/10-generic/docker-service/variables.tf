@@ -80,7 +80,7 @@ variable "pgid" {
 variable "labels" {
   description = "Container labels"
   type        = map(string)
-  default     = []
+  default     = {}
 }
 
 variable "host_mappings" {
