@@ -79,10 +79,7 @@ variable "pgid" {
 
 variable "labels" {
   description = "Container labels"
-  type        = list(object({
-    key   = string
-    value = string
-  }))
+  type        = map(string)
   default     = []
 }
 
