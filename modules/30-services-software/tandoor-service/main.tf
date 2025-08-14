@@ -14,7 +14,7 @@ locals {
   tandoor_tag            = var.image_tag
   postgres_tag           = var.postgres_image_tag
   env_file               = "${path.module}/.env"
-  tandoor_internal_port  = 8080
+  tandoor_internal_port  = 80
 
   tandoor_volumes = [
     {
