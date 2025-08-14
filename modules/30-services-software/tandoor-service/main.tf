@@ -18,11 +18,6 @@ locals {
 
   tandoor_volumes = [
     {
-      host_path      = "/mnt/storage/media"
-      container_path = "/media"
-      read_only      = true
-    },
-    {
       host_path      = "${var.volume_path}/${local.container_name}/config"
       container_path = "/config"
       read_only      = false
