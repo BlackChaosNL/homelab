@@ -19,6 +19,10 @@ locals {
   env_file                = "${path.module}/.env"
   authentik_internal_port = 9000
 
+  authentik_content = <<-EOT
+  X_FRAME_OPTIONS = "SAMEORIGIN"
+  EOT
+
   authentik_volumes = [
     {
       host_path       = "${var.volume_path}/${local.container_name}/media"
@@ -30,6 +34,11 @@ locals {
       container_path  = "/templates"
       read_only       = false
     },
+    {
+      host_path       = "${var.volume_path}/${local.container_name}/user_settings.py"
+      container_path  = "/data/user_settings.py"
+      read_only       = false
+    }
   ]
 
   redis_volumes = [
@@ -63,6 +72,11 @@ locals {
     POSTGRES_DB                      = provider::dotenv::get_by_key("AUTHENTIK_POSTGRESQL__DB", local.env_file)
   }
 }
+
+  resource "local_file" "authentik_config_file" {
+    content  = local.authentik_content
+    filename = "${var.volume_path}/${local.container_name}/user_settings.py"
+  }
 
 module "authentik_network" {
   source = "../../01-networking/network-service"
