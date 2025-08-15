@@ -49,7 +49,7 @@ homelab/
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/yurisasc/homelab.git
+    git clone https://github.com/BlackChaosNL/homelab.git
     cd homelab
     ```
 
