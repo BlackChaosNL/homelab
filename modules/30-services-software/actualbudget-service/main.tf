@@ -1,3 +1,10 @@
+terraform {
+  required_providers {
+    dotenv = {
+      source = "germanbrew/dotenv"
+    }
+  }
+}
 
 locals {
   container_name  = "actualbudget"
