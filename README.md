@@ -1,6 +1,6 @@
 # My OpenTofu homelab infrastructure
 
-This project uses [OpenTofu](https://opentofu.org/) to manage the infrastructure.
+This project uses [OpenTofu](https://opentofu.org/) to manage the infrastructure on my private server.
 
 ## Overview
 
@@ -17,7 +17,7 @@ Before you begin, ensure you have the following installed and configured:
 
 * **OpenTofu:** Version `1.6.0` or higher. [Installation Guide](https://opentofu.org/docs/intro/install/)
 * **Git:** For version control.
-* **Docker/Podman:** to host containers.
+* **Docker/Podman:** to host containers, I use Podman in my setup.
 
 ## Project Structure
 
@@ -88,7 +88,7 @@ Make sure you are in the root directory of the project (`homelab/`).
     tofu output
     ```
 
-5.  **Destroy Infrastructure (Use with Extreme Caution!):**
+5.  **Destroy Infrastructure (Use with caution!):**
     This command will attempt to destroy all resources managed by this OpenTofu configuration.
     ```bash
     tofu destroy
