@@ -19,6 +19,18 @@ module "infrastructure_int" {
   }
 }
 
+module "jellyfin" {
+  source = "${local.module_dir}/20-services-entertainment/jellyfin-service"
+  volume_path = "${local.root_volume}/jellyfin"
+  networks = [module.infrastructure_int.name]
+}
+
+module "calibre" {
+  source = "${local.module_dir}/20-services-entertainment/calibre-service"
+  volume_path = "${local.root_volume}/calibre"
+  networks = [module.infrastructure_int.name]
+}
+
 module "authentik" {
   source = "${local.module_dir}/30-services-software/authentik-service"
   volume_path = "${local.root_volume}/authentik"
@@ -37,12 +49,6 @@ module "tandoor" {
   networks = [module.infrastructure_int.name]
 }
 
-module "jellyfin" {
-  source = "${local.module_dir}/20-services-entertainment/jellyfin-service"
-  volume_path = "${local.root_volume}/jellyfin"
-  networks = [module.infrastructure_int.name]
-}
-
 module "qbittorrent" {
   source = "${local.module_dir}/30-services-software/qbittorrent-service"
   volume_path = "${local.root_volume}/qbittorrent"
@@ -55,8 +61,9 @@ module "coder" {
   networks = [module.infrastructure_int.name]
 }
 
-module "calibre" {
-  source = "${local.module_dir}/20-services-entertainment/calibre-service"
-  volume_path = "${local.root_volume}/calibre"
+module "actualbudget" {
+  source = "${local.module_dir}/30-services-software/actualbudget-service"
+  volume_path = "${local.root_volume}/actualbudget"
   networks = [module.infrastructure_int.name]
 }
+
