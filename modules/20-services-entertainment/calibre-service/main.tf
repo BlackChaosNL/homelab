@@ -57,6 +57,5 @@ output "service_definition" {
     primary_port = local.calibre_internal_port
     endpoint     = "http://${local.container_name}:${local.calibre_internal_port}"
     subdomains   = ["books"]
-    is_guarded   = true
   }
 }
