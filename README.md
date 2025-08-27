@@ -16,7 +16,7 @@ This OpenTofu configuration manages various self-hosted services primarily as Do
 Before you begin, ensure you have the following installed and configured:
 
 * **asdf-vm** Version `0.18` to install appropriate opentofu.
-* **OpenTofu:** Version `1.6.0` or higher. 
+* **OpenTofu:** Version `1.10.0` or higher. See `.tool-versions` for the tested version.
 * **Git:** For version control.
 * **Docker/Podman:** to host containers, I use Podman in my setup.
 
