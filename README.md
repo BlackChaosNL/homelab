@@ -15,7 +15,8 @@ This OpenTofu configuration manages various self-hosted services primarily as Do
 
 Before you begin, ensure you have the following installed and configured:
 
-* **OpenTofu:** Version `1.6.0` or higher. [Installation Guide](https://opentofu.org/docs/intro/install/)
+* **asdf-vm** Version `0.18` to install appropriate opentofu.
+* **OpenTofu:** Version `1.6.0` or higher. 
 * **Git:** For version control.
 * **Docker/Podman:** to host containers, I use Podman in my setup.
 
@@ -58,7 +59,7 @@ homelab/
     ```bash
     cp .env.example .env
     ```
-    **Edit `.env` to set your specific values.** This file is included in `.gitignore` by default as it's expected to contain secrets. They exist in 
+    **Edit `.env` to set your specific values.** This file is included in `.gitignore` by default as it's expected to contain secrets.
 
 ## Usage
 
