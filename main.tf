@@ -14,7 +14,7 @@ module "caddy" {
   source              = "./modules/01-networking/caddy-service"
   volume_path         = "${local.volume_host}"
   domains             = [
-    "blackchaosnl.myaddr.dev",
+    "blackchaosnl.dedyn.io",
   ]
   tls_email           = "jjvijgen@gmail.com"
   container_name      = "caddy"
