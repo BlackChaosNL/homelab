@@ -1,8 +1,8 @@
 
 variable "image_tag" {
-  description = "The tag for the authentik container image. Default: 2025.6.3"
+  description = "The tag for the authentik container image. Default: 2025.8.1"
   type        = string
-  default     = "2025.6.3"
+  default     = "2025.8.1"
 }
 
 variable "redis_image_tag" {
