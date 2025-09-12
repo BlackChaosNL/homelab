@@ -20,7 +20,6 @@ locals {
   authentik_internal_port = 9000
 
   authentik_content = <<-EOT
-  X_FRAME_OPTIONS = "SAMEORIGIN"
   EOT
 
   authentik_volumes = [
