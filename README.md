@@ -46,6 +46,35 @@ homelab/
 └── services/                 # Application services (Docker containers)
 ```
 
+## Networking structure
+
+### Internal Network
+
+For the global network I use the following IP range and Subnet:
+
+- 10.100.0.0 - 10.100.0.254
+- 255.255.255.0 (/24)
+
+You will get 253 usable host addresses per network. This network is mainly for connecting pods to Caddy as the external ingress.
+
+### Intra pod network
+
+For connecting pods to each other (For example: Postgres -> Project <- Redis ) I use the following IP range and Subnet:
+
+- 172.16.0.0 - 172.16.0.254 
+- 255.255.255.248 (/29)
+
+You get 6 usable host addresses per internal network, to find the usable addresses you can check [here](https://www.calculator.net/ip-subnet-calculator.html?cclass=b&csubnet=29&cip=172.16.0.0&ctype=ipv4&x=Calculate).
+
+#### Addresses in use:
+
+| Network name             | IP address range | 
+| ------------------------ | ---------------- |
+| Authentik                | .0 - .7          |
+| Pelican                  | .8 - .15         |
+| Coder                    | .16 - .23        |
+| Tandoor                  | .24 - .31        |
+
 ## Configuration
 
 1.  **Clone the repository:**
