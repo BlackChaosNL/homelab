@@ -57,16 +57,6 @@ module "pelican-panel" {
   restart_policy = "always"
   volumes        = [
     {
-        host_path = "${var.volume_path}/${local.container_name}/data"
-        container_path = "/pelican-data"
-        read_only = false
-    },
-    {
-        host_path = "${var.volume_path}/${local.container_name}/logs"
-        container_path = "/var/www/html/storage/logs"
-        read_only = false
-    },
-    {
         host_path = "${var.volume_path}/${local.container_name}/Caddyfile"
         container_path = "/etc/caddy/Caddyfile"
         read_only = true
