@@ -74,6 +74,8 @@ module "pelican-panel" {
   ]
   env_vars       = {
     TZ           = var.timezone
+    PUID         = var.user_id
+    PGID         = var.group_id
     APP_TIMEZONE = var.timezone
     APP_ENV      = "production"
     APP_URL      = "${var.subdomain}.blackchaosnl.myaddr.dev"
