@@ -114,6 +114,6 @@ output "service_definition" {
     name         = local.container_name
     primary_port = local.pelican_internal_port
     endpoint     = "http://${local.container_name}:${local.pelican_internal_port}"
-    subdomain    = ["gpanel"]
+    subdomains    = ["gpanel"]
   }
 }
