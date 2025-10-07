@@ -31,6 +31,12 @@ module "calibre" {
   networks = [module.infrastructure_int.name]
 }
 
+module "pelican" {
+  source = "${local.module_dir}/20-services-entertainment/pelican-service"
+  volume_path = "${local.root_volume}/pelican"
+  networks = [module.infrastructure_int.name]
+}
+
 module "authentik" {
   source = "${local.module_dir}/30-services-software/authentik-service"
   volume_path = "${local.root_volume}/authentik"
