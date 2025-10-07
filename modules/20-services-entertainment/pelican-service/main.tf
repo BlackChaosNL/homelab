@@ -55,6 +55,7 @@ module "pelican-panel" {
   tag            = local.pelican_tag
   networks       = concat([module.pelican_network.name], var.networks)
   restart_policy = "always"
+  userns_mode    = "keep-id:auto"
   volumes        = [
     {
         host_path = "${var.volume_path}/${local.container_name}/data"
