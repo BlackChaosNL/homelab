@@ -40,7 +40,7 @@ resource "local_file" "pelican_caddy_config_file" {
 
 module "pelican_network" {
   source = "../../01-networking/network-service"
-  name   = "authentik-network"
+  name   = "pelican-network"
   subnet = "172.16.0.8/29"
   driver = "bridge"
   options = {
