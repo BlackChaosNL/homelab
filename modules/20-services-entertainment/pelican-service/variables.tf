@@ -38,9 +38,3 @@ variable "timezone" {
   type        = string
   default     = "Europe/Helsinki"
 }
-
-variable "subdomain" {
-    description = "Subdomain on which the panel is hosted"
-    type = string
-    default = "gpanel"
-}
