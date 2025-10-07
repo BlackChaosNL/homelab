@@ -14,7 +14,7 @@ locals {
   pelican_tag            = var.image_tag
   pelican_wings_tag      = var.wings_image_tag
   env_file               = "${path.module}/.env"
-  pelican_internal_port  = 80
+  pelican_internal_port  = 8000
 
   caddyfile_content = <<-EOT
   {
@@ -23,7 +23,7 @@ locals {
     email none@none.invalid
   }
 
-  :80 {
+  :8000 {
     root * /var/www/html/public
     encode gzip
 
@@ -68,7 +68,7 @@ module "pelican-panel" {
     PGID         = var.group_id
     APP_TIMEZONE = var.timezone
     APP_ENV      = "production"
-    APP_URL      = "${var.subdomain}.blackchaosnl.myaddr.dev"
+    APP_URL      = "https://gpanel.blackchaosnl.myaddr.dev"
     ADMIN_EMAIL  = "jjvijgen@gmail.com"
   }
 }
@@ -114,6 +114,6 @@ output "service_definition" {
     name         = local.container_name
     primary_port = local.pelican_internal_port
     endpoint     = "http://${local.container_name}:${local.pelican_internal_port}"
-    subdomain    = [var.subdomain]
+    subdomain    = ["gpanel"]
   }
 }
