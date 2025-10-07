@@ -83,8 +83,8 @@ module "pelican-panel" {
 
 module "pelican-wings" {
   source         = "../../10-generic/docker-service"
-  container_name = local.pelican_wings_image
-  image          = local.pelican_wings_tag
+  container_name = local.wings_container_name
+  image          = local.pelican_wings_image
   tag            = local.pelican_wings_tag
   networks       = concat([module.pelican_network.name], var.networks)
   restart_policy = "always"
