@@ -53,7 +53,7 @@ module "pelican-panel" {
   container_name = local.container_name
   image          = local.pelican_image
   tag            = local.pelican_tag
-  networks       = concat([pelican_network], var.networks)
+  networks       = concat([module.pelican_network.name], var.networks)
   restart_policy = "always"
   volumes        = [
     {
@@ -86,7 +86,7 @@ module "pelican-wings" {
   container_name = local.pelican_wings_image
   image          = local.pelican_wings_tag
   tag            = local.pelican_wings_tag
-  networks       = concat([pelican_network], var.networks)
+  networks       = concat([module.pelican_network.name], var.networks)
   restart_policy = "always"
   volumes        = [
     {
