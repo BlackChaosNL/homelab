@@ -31,11 +31,33 @@ locals {
     file_server
   }
   EOT
+
+  pelican_env_file = <<-EOT
+  APP_KEY=${provider::dotenv::get_by_key("APP_KEY", local.env_file)}
+  APP_INSTALLED=true
+  APP_NAME=Pelican
+  APP_URL="https://gpanel.blackchaosnl.myaddr.dev"
+
+  DB_CONNECTION=sqlite
+  DB_DATABASE="database.sqlite"
+
+  CACHE_STORE=file
+
+  QUEUE_CONNECTION=database
+
+  SESSION_DRIVER=file
+  EOT
 }
+
 
 resource "local_file" "pelican_caddy_config_file" {
     content  = local.caddyfile_content
     filename = "${var.volume_path}/${local.container_name}/Caddyfile"
+}
+
+resource "local_file" "pelican_config_file" {
+    content  = local.caddyfile_content
+    filename = "${var.volume_path}/${local.container_name}/.env"
 }
 
 module "pelican_network" {
@@ -57,9 +79,19 @@ module "pelican-panel" {
   restart_policy = "always"
   volumes        = [
     {
-        host_path = "${var.volume_path}/${local.container_name}/Caddyfile"
-        container_path = "/etc/caddy/Caddyfile"
-        read_only = true
+      host_path = "${var.volume_path}/${local.container_name}/Caddyfile"
+      container_path = "/etc/caddy/Caddyfile"
+      read_only = true
+    },
+    {
+      host_path = "${var.volume_path}/${local.container_name}/database.sqlite"
+      container_path = "/pelican-data/database/database.sqlite"
+      read_only = false
+    },
+    {
+      host_path = "${var.volume_path}/${local.container_name}/.env"
+      container_path = "/pelican-data/.env"
+      read_only = true
     }
   ]
   env_vars       = {
