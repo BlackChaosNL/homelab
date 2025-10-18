@@ -56,7 +56,7 @@ resource "local_file" "pelican_caddy_config_file" {
 }
 
 resource "local_file" "pelican_config_file" {
-    content  = local.caddyfile_content
+    content  = local.pelican_env_file
     filename = "${var.volume_path}/${local.container_name}/.env"
 }
 
@@ -82,11 +82,6 @@ module "pelican-panel" {
       host_path = "${var.volume_path}/${local.container_name}/Caddyfile"
       container_path = "/etc/caddy/Caddyfile"
       read_only = true
-    },
-    {
-      host_path = "${var.volume_path}/${local.container_name}/database.sqlite"
-      container_path = "/pelican-data/database/database.sqlite"
-      read_only = false
     },
     {
       host_path = "${var.volume_path}/${local.container_name}/.env"
