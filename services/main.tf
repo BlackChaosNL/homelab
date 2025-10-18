@@ -37,6 +37,12 @@ module "pelican" {
   networks = [module.infrastructure_int.name]
 }
 
+module "wings" {
+  source = "${local.module_dir}/20-services-entertainment/wings-service"
+  volume_path = "${local.root_volume}/wings"
+  networks = [module.infrastructure_int.name]
+}
+
 module "authentik" {
   source = "${local.module_dir}/30-services-software/authentik-service"
   volume_path = "${local.root_volume}/authentik"

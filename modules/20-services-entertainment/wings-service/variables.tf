@@ -1,5 +1,5 @@
 variable "image_tag" {
-  description = "The tag for the Pelican container image. Default: latest"
+  description = "The tag for the Pelican Wings container image. Default: latest"
   type        = string
   default     = "latest"
 }
