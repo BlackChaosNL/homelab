@@ -4,6 +4,7 @@ output "service_definitions" {
     module.jellyfin.service_definition,
     module.calibre.service_definition,
     module.pelican.service_definition,
+    module.wings.service_definition,
     module.authentik.service_definition,
     module.traccar.service_definition,
     module.tandoor.service_definition,
