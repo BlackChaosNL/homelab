@@ -48,7 +48,7 @@ locals {
 
   # Disable emails and enable OIDC since this is a private instanced managed with Authentik
   penpot_frontend_env_vars = {
-    PENPOT_FLAGS = "disable-smtp enable-prepl-server enable-login-with-oidc"
+    PENPOT_FLAGS = "disable-registration disable-email-verification disable-smtp enable-prepl-server enable-login-with-oidc"
   }
 
   penpot_backend_env_vars = {
@@ -126,7 +126,7 @@ module "penpot-backend" {
   image          = local.penpot_backend_image
   tag            = local.penpot_backend_tag
   volumes        = local.penpot_volumes
-  env_vars       = local.penpot_backend_env_vars
+  env_vars       = merge(local.penpot_frontend_env_vars, local.penpot_backend_env_vars)
   networks       = [module.penpot_network.name]
   restart_policy = "always"
 }
