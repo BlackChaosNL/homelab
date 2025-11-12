@@ -59,8 +59,8 @@ locals {
     PENPOT_DATABASE_PASSWORD = provider::dotenv::get_by_key("POSTGRES_PASSWORD", local.env_file)
     PENPOT_REDIS_URI         = "redis://${local.valkey_container_name}/0"
 
-    PENPOT_ASSETS_STORAGE_BACKEND      = "assets-fs"
-    PENPOT_STORAGE_ASSETS_FS_DIRECTORY = "/opt/data/assets"
+    PENPOT_OBJECTS_STORAGE_BACKEND      = "fs"
+    PENPOT_OBJECTS_STORAGE_FS_DIRECTORY = "/opt/data/assets"
 
     PENPOT_TELEMETRY_ENABLED = false
     PENPOT_TELEMETRY_REFERER = ""
