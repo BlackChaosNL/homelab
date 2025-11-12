@@ -66,6 +66,7 @@ locals {
     PENPOT_TELEMETRY_REFERER = ""
 
     PENPOT_OIDC_CLIENT_ID = provider::dotenv::get_by_key("PENPOT_OIDC_CLIENT_ID", local.env_file)
+    PENPOT_OIDC_CLIENT_SECRET = provider::dotenv::get_by_key("PENPOT_OIDC_CLIENT_SECRET", local.env_file)
     PENPOT_OIDC_BASE_URI  = provider::dotenv::get_by_key("PENPOT_OIDC_BASE_URI", local.env_file)
     PENPOT_OIDC_ROLES     = provider::dotenv::get_by_key("PENPOT_OIDC_ROLES", local.env_file)
   }
