@@ -7,55 +7,55 @@ terraform {
 }
 
 locals {
-  container_name         = "tandoor"
-  postgres_name          = "tandoor-postgres"
-  tandoor_image          = "docker.io/vabene1111/recipes"
-  postgres_image         = "docker.io/library/postgres"
-  tandoor_tag            = var.image_tag
-  postgres_tag           = var.postgres_image_tag
-  env_file               = "${path.module}/.env"
-  tandoor_internal_port  = 80
+  container_name        = "tandoor"
+  postgres_name         = "tandoor-postgres"
+  tandoor_image         = "docker.io/vabene1111/recipes"
+  postgres_image        = "docker.io/library/postgres"
+  tandoor_tag           = var.image_tag
+  postgres_tag          = var.postgres_image_tag
+  env_file              = "${path.module}/.env"
+  tandoor_internal_port = 80
 
   tandoor_volumes = [
     {
       host_path      = "${var.volume_path}/${local.container_name}/config"
       container_path = "/config"
       read_only      = false
-    },{
+      }, {
       host_path      = "${var.volume_path}/${local.container_name}/cache"
       container_path = "/cache"
       read_only      = false
     },
   ]
 
-    postgres_volumes = [
+  postgres_volumes = [
     {
-      host_path       = "${var.volume_path}/${local.container_name}/postgres/data"
-      container_path  = "/var/lib/postgresql/data"
-      read_only       = false
+      host_path      = "${var.volume_path}/${local.container_name}/postgres/data"
+      container_path = "/var/lib/postgresql/data"
+      read_only      = false
     },
   ]
 
   tandoor_env_vars = {
-    SOCIAL_PROVIDERS                 = provider::dotenv::get_by_key("SOCIAL_PROVIDERS", local.env_file)
-    SOCIALACCOUNT_PROVIDERS          = provider::dotenv::get_by_key("SOCIALACCOUNT_PROVIDERS", local.env_file)
-    ENABLE_SIGNUP                    = provider::dotenv::get_by_key("ENABLE_SIGNUP", local.env_file)
-    MEDIA_URL                        = provider::dotenv::get_by_key("MEDIA_URL", local.env_file)
-    SECRET_KEY                       = provider::dotenv::get_by_key("SECRET_KEY", local.env_file)
-    DEBUG                            = provider::dotenv::get_by_key("DEBUG", local.env_file)
-    ALLOWED_HOSTS                    = provider::dotenv::get_by_key("ALLOWED_HOSTS", local.env_file)
-    DB_ENGINE                        = provider::dotenv::get_by_key("DB_ENGINE", local.env_file)
-    POSTGRES_HOST                    = provider::dotenv::get_by_key("POSTGRES_HOST", local.env_file)
-    POSTGRES_DB                      = provider::dotenv::get_by_key("POSTGRES_DB", local.env_file)
-    POSTGRES_PORT                    = provider::dotenv::get_by_key("POSTGRES_PORT", local.env_file)
-    POSTGRES_USER                    = provider::dotenv::get_by_key("POSTGRES_USER", local.env_file)
-    POSTGRES_PASSWORD                = provider::dotenv::get_by_key("POSTGRES_PASSWORD", local.env_file)
+    SOCIAL_PROVIDERS        = provider::dotenv::get_by_key("SOCIAL_PROVIDERS", local.env_file)
+    SOCIALACCOUNT_PROVIDERS = provider::dotenv::get_by_key("SOCIALACCOUNT_PROVIDERS", local.env_file)
+    ENABLE_SIGNUP           = provider::dotenv::get_by_key("ENABLE_SIGNUP", local.env_file)
+    MEDIA_URL               = provider::dotenv::get_by_key("MEDIA_URL", local.env_file)
+    SECRET_KEY              = provider::dotenv::get_by_key("SECRET_KEY", local.env_file)
+    DEBUG                   = provider::dotenv::get_by_key("DEBUG", local.env_file)
+    ALLOWED_HOSTS           = provider::dotenv::get_by_key("ALLOWED_HOSTS", local.env_file)
+    DB_ENGINE               = provider::dotenv::get_by_key("DB_ENGINE", local.env_file)
+    POSTGRES_HOST           = provider::dotenv::get_by_key("POSTGRES_HOST", local.env_file)
+    POSTGRES_DB             = provider::dotenv::get_by_key("POSTGRES_DB", local.env_file)
+    POSTGRES_PORT           = provider::dotenv::get_by_key("POSTGRES_PORT", local.env_file)
+    POSTGRES_USER           = provider::dotenv::get_by_key("POSTGRES_USER", local.env_file)
+    POSTGRES_PASSWORD       = provider::dotenv::get_by_key("POSTGRES_PASSWORD", local.env_file)
   }
 
   postgres_env_vars = {
-    POSTGRES_PASSWORD                = provider::dotenv::get_by_key("POSTGRES_PASSWORD", local.env_file)
-    POSTGRES_USER                    = provider::dotenv::get_by_key("POSTGRES_USER", local.env_file)
-    POSTGRES_DB                      = provider::dotenv::get_by_key("POSTGRES_DB", local.env_file)
+    POSTGRES_PASSWORD = provider::dotenv::get_by_key("POSTGRES_PASSWORD", local.env_file)
+    POSTGRES_USER     = provider::dotenv::get_by_key("POSTGRES_USER", local.env_file)
+    POSTGRES_DB       = provider::dotenv::get_by_key("POSTGRES_DB", local.env_file)
   }
 }
 
@@ -65,7 +65,7 @@ module "tandoor_network" {
   subnet = "172.16.0.24/29"
   driver = "bridge"
   options = {
-    "isolate": false
+    "isolate" : false
   }
 }
 

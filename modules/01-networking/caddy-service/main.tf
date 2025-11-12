@@ -65,7 +65,7 @@ locals {
     ${site.site_address} {
       import headers
       route {
-        %{ if site.is_route_protected }
+        %{if site.is_route_protected}
         reverse_proxy /outpost.goauthentik.io/* http://authentik:9000
 
         forward_auth http://authentik:9000 {
@@ -73,17 +73,17 @@ locals {
             copy_headers X-Authentik-Username X-Authentik-Groups X-Authentik-Entitlements X-Authentik-Email X-Authentik-Name X-Authentik-Uid X-Authentik-Jwt X-Authentik-Meta-Jwks X-Authentik-Meta-Outpost X-Authentik-Meta-Provider X-Authentik-Meta-App X-Authentik-Meta-Version
             trusted_proxies private_ranges
         }
-        %{ endif }
-        %{ if site.has_custom_config }
+        %{endif}
+        %{if site.has_custom_config}
         ${site.custom_config}
-        %{ else }
+        %{else}
         reverse_proxy ${site.endpoint} {
           ${join("\n        ", [
-            for key, value in site.reverse_proxy_options : 
-            "${key} ${value}"
-          ])}
+    for key, value in site.reverse_proxy_options :
+    "${key} ${value}"
+  ])}
         }
-        %{ endif }
+        %{endif}
       }
     }
     EOT
@@ -140,5 +140,5 @@ module "caddy" {
     }
   ]
 
-  networks   = var.networks
+  networks = var.networks
 }

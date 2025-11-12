@@ -7,25 +7,25 @@ terraform {
 }
 
 locals {
-  container_name         = "calibre"
-  calibre_image          = "docker.io/crocodilestick/calibre-web-automated"
-  calibre_tag            = var.image_tag
-  calibre_internal_port  = 8083
+  container_name        = "calibre"
+  calibre_image         = "docker.io/crocodilestick/calibre-web-automated"
+  calibre_tag           = var.image_tag
+  calibre_internal_port = 8083
 
   calibre_volumes = [
     {
       host_path      = "${var.volume_path}/${local.container_name}/config"
       container_path = "/config"
       read_only      = false
-    },{
+      }, {
       host_path      = "${var.volume_path}/${local.container_name}/book-ingest"
       container_path = "/cwa-book-ingest"
       read_only      = false
-    },{
+      }, {
       host_path      = "${var.volume_path}/${local.container_name}/Calibre Library"
       container_path = "/calibre-library"
       read_only      = false
-    },{
+      }, {
       host_path      = "${var.volume_path}/${local.container_name}/plugins"
       container_path = "/config/.config/calibre/plugins"
       read_only      = false
@@ -33,9 +33,9 @@ locals {
   ]
 
   calibre_env_vars = {
-    PUID        = var.user_id
-    PGID        = var.group_id
-    TZ          = var.timezone
+    PUID = var.user_id
+    PGID = var.group_id
+    TZ   = var.timezone
   }
 }
 

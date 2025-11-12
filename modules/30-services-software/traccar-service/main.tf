@@ -7,16 +7,16 @@ terraform {
 }
 
 locals {
-  container_name         = "traccar"
-  traccar_image          = "docker.io/traccar/traccar"
-  traccar_tag            = var.image_tag
-  env_file               = "${path.module}/.env"
-  traccar_internal_port  = 8082
+  container_name        = "traccar"
+  traccar_image         = "docker.io/traccar/traccar"
+  traccar_tag           = var.image_tag
+  env_file              = "${path.module}/.env"
+  traccar_internal_port = 8082
 
   traccar_env_vars = {
-    PUID        = var.user_id
-    PGID        = var.group_id
-    TZ          = var.timezone
+    PUID = var.user_id
+    PGID = var.group_id
+    TZ   = var.timezone
   }
 
   traccar_content = <<-EOT
@@ -52,16 +52,16 @@ module "traccar" {
   container_name = local.container_name
   image          = local.traccar_image
   tag            = local.traccar_tag
-  volumes        = [
+  volumes = [
     {
       host_path      = "${var.volume_path}/${local.container_name}/logs"
       container_path = "/opt/traccar/logs"
       read_only      = false
-    },{
+      }, {
       host_path      = "${var.volume_path}/${local.container_name}/data"
       container_path = "/opt/traccar/data"
       read_only      = false
-    },{
+      }, {
       host_path      = "${var.volume_path}/${local.container_name}/traccar.xml"
       container_path = "/opt/traccar/conf/traccar.xml"
       read_only      = true

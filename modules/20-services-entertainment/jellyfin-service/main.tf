@@ -7,12 +7,12 @@ terraform {
 }
 
 locals {
-  container_name          = "jellyfin"
-  jellyfin_image          = "docker.io/jellyfin/jellyfin"
-  jellyfin_tag            = var.image_tag
-  env_file                = "${path.module}/.env"
-  jellyfin_internal_port  = 8096
-  gpus                    = "all"
+  container_name         = "jellyfin"
+  jellyfin_image         = "docker.io/jellyfin/jellyfin"
+  jellyfin_tag           = var.image_tag
+  env_file               = "${path.module}/.env"
+  jellyfin_internal_port = 8096
+  gpus                   = "all"
 
   jellyfin_volumes = [
     {
@@ -24,7 +24,7 @@ locals {
       host_path      = "${var.volume_path}/${local.container_name}/config"
       container_path = "/config"
       read_only      = false
-    },{
+      }, {
       host_path      = "${var.volume_path}/${local.container_name}/cache"
       container_path = "/cache"
       read_only      = false
@@ -32,9 +32,9 @@ locals {
   ]
 
   jellyfin_env_vars = {
-    PUID        = var.user_id
-    PGID        = var.group_id
-    TZ          = var.timezone
+    PUID = var.user_id
+    PGID = var.group_id
+    TZ   = var.timezone
   }
 }
 

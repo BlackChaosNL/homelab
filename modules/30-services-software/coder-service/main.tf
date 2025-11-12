@@ -7,14 +7,14 @@ terraform {
 }
 
 locals {
-  container_name             = "coder"
-  postgres_container_name    = "coder-postgres"
-  coder_image                = "ghcr.io/coder/coder"
-  postgres_image             = "docker.io/library/postgres"
-  coder_tag                  = var.image_tag
-  postgres_tag               = var.postgres_image_tag
-  env_file                   = "${path.module}/.env"
-  coder_internal_port        = 7080
+  container_name          = "coder"
+  postgres_container_name = "coder-postgres"
+  coder_image             = "ghcr.io/coder/coder"
+  postgres_image          = "docker.io/library/postgres"
+  coder_tag               = var.image_tag
+  postgres_tag            = var.postgres_image_tag
+  env_file                = "${path.module}/.env"
+  coder_internal_port     = 7080
 
   coder_volumes = [
     {
@@ -33,19 +33,19 @@ locals {
   ]
 
   coder_env_vars = {
-    CODER_PG_CONNECTION_URL              = "postgresql://${provider::dotenv::get_by_key("POSTGRES_USER", local.env_file)}:${provider::dotenv::get_by_key("POSTGRES_PASSWORD", local.env_file)}@coder-postgres/${provider::dotenv::get_by_key("POSTGRES_DB", local.env_file)}?sslmode=disable"
-    CODER_HTTP_ADDRESS                   = provider::dotenv::get_by_key("CODER_HTTP_ADDRESS", local.env_file)
-    CODER_ACCESS_URL                     = provider::dotenv::get_by_key("CODER_ACCESS_URL", local.env_file)
-    CODER_PROXY_TRUSTED_HEADERS          = provider::dotenv::get_by_key("CODER_PROXY_TRUSTED_HEADERS", local.env_file)
-    CODER_PROXY_TRUSTED_ORIGINS          = provider::dotenv::get_by_key("CODER_PROXY_TRUSTED_ORIGINS", local.env_file)
-    CODER_DISABLE_PASSWORD_AUTH          = provider::dotenv::get_by_key("CODER_DISABLE_PASSWORD_AUTH", local.env_file)
-    DOCKER_USER                          = provider::dotenv::get_by_key("DOCKER_USER", local.env_file)
+    CODER_PG_CONNECTION_URL     = "postgresql://${provider::dotenv::get_by_key("POSTGRES_USER", local.env_file)}:${provider::dotenv::get_by_key("POSTGRES_PASSWORD", local.env_file)}@coder-postgres/${provider::dotenv::get_by_key("POSTGRES_DB", local.env_file)}?sslmode=disable"
+    CODER_HTTP_ADDRESS          = provider::dotenv::get_by_key("CODER_HTTP_ADDRESS", local.env_file)
+    CODER_ACCESS_URL            = provider::dotenv::get_by_key("CODER_ACCESS_URL", local.env_file)
+    CODER_PROXY_TRUSTED_HEADERS = provider::dotenv::get_by_key("CODER_PROXY_TRUSTED_HEADERS", local.env_file)
+    CODER_PROXY_TRUSTED_ORIGINS = provider::dotenv::get_by_key("CODER_PROXY_TRUSTED_ORIGINS", local.env_file)
+    CODER_DISABLE_PASSWORD_AUTH = provider::dotenv::get_by_key("CODER_DISABLE_PASSWORD_AUTH", local.env_file)
+    DOCKER_USER                 = provider::dotenv::get_by_key("DOCKER_USER", local.env_file)
   }
 
   postgres_env_vars = {
-    POSTGRES_USER                        = provider::dotenv::get_by_key("POSTGRES_USER", local.env_file)
-    POSTGRES_PASSWORD                    = provider::dotenv::get_by_key("POSTGRES_PASSWORD", local.env_file)
-    POSTGRES_DB                          = provider::dotenv::get_by_key("POSTGRES_DB", local.env_file)
+    POSTGRES_USER     = provider::dotenv::get_by_key("POSTGRES_USER", local.env_file)
+    POSTGRES_PASSWORD = provider::dotenv::get_by_key("POSTGRES_PASSWORD", local.env_file)
+    POSTGRES_DB       = provider::dotenv::get_by_key("POSTGRES_DB", local.env_file)
   }
 
 }
@@ -56,7 +56,7 @@ module "coder_network" {
   subnet = "172.16.0.16/29"
   driver = "bridge"
   options = {
-    "isolate": false
+    "isolate" : false
   }
 }
 
@@ -82,10 +82,10 @@ module "coder" {
   networks       = concat([module.coder_network.name], var.networks)
   restart_policy = "always"
   userns_mode    = "keep-id:uid=1000,gid=1000"
-  labels         = {
+  labels = {
     "run.oci.keep_original_groups" = "1"
   }
-  security_opts  = [
+  security_opts = [
     "label:type:container_runtype_t"
   ]
 }

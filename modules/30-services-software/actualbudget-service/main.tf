@@ -7,12 +7,12 @@ terraform {
 }
 
 locals {
-  container_name  = "actualbudget"
-  image           = "ghcr.io/actualbudget/actual"
-  image_tag       = var.image_tag
-  env_file        = "${path.module}/.env"
-  internal_port   = 5006
-  
+  container_name = "actualbudget"
+  image          = "ghcr.io/actualbudget/actual"
+  image_tag      = var.image_tag
+  env_file       = "${path.module}/.env"
+  internal_port  = 5006
+
   default_volumes = [
     {
       host_path      = "${var.volume_path}/data"

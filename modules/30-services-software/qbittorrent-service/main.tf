@@ -7,11 +7,11 @@ terraform {
 }
 
 locals {
-  container_name             = "qbittorrent"
-  qbittorrent_image          = "lscr.io/linuxserver/qbittorrent"
-  qbittorrent_tag            = var.image_tag
-  env_file                   = "${path.module}/.env"
-  qbittorrent_internal_port  = 9080
+  container_name            = "qbittorrent"
+  qbittorrent_image         = "lscr.io/linuxserver/qbittorrent"
+  qbittorrent_tag           = var.image_tag
+  env_file                  = "${path.module}/.env"
+  qbittorrent_internal_port = 9080
 
   qbittorrent_volumes = [
     {
@@ -27,11 +27,11 @@ locals {
   ]
 
   qbittorrent_env_vars = {
-    PUID                             = var.user_id
-    PGID                             = var.group_id
-    TZ                               = var.timezone
-    WEBUI_PORT                       = provider::dotenv::get_by_key("WEBUI_PORT", local.env_file)
-    TORRENTING_PORT                  = provider::dotenv::get_by_key("TORRENTING_PORT", local.env_file)
+    PUID            = var.user_id
+    PGID            = var.group_id
+    TZ              = var.timezone
+    WEBUI_PORT      = provider::dotenv::get_by_key("WEBUI_PORT", local.env_file)
+    TORRENTING_PORT = provider::dotenv::get_by_key("TORRENTING_PORT", local.env_file)
   }
 
 }

@@ -7,11 +7,11 @@ terraform {
 }
 
 locals {
-  container_name         = "pelican"
-  pelican_image          = "ghcr.io/pelican-dev/panel"
-  pelican_tag            = var.image_tag
-  env_file               = "${path.module}/.env"
-  pelican_internal_port  = 8000
+  container_name        = "pelican"
+  pelican_image         = "ghcr.io/pelican-dev/panel"
+  pelican_tag           = var.image_tag
+  env_file              = "${path.module}/.env"
+  pelican_internal_port = 8000
 
   caddyfile_content = <<-EOT
   {
@@ -48,13 +48,13 @@ locals {
 
 
 resource "local_file" "pelican_caddy_config_file" {
-    content  = local.caddyfile_content
-    filename = "${var.volume_path}/${local.container_name}/Caddyfile"
+  content  = local.caddyfile_content
+  filename = "${var.volume_path}/${local.container_name}/Caddyfile"
 }
 
 resource "local_file" "pelican_config_file" {
-    content  = local.pelican_env_file
-    filename = "${var.volume_path}/${local.container_name}/.env"
+  content  = local.pelican_env_file
+  filename = "${var.volume_path}/${local.container_name}/.env"
 }
 
 
@@ -66,19 +66,19 @@ module "pelican-panel" {
   tag            = local.pelican_tag
   networks       = var.networks
   restart_policy = "always"
-  volumes        = [
+  volumes = [
     {
-      host_path = "${var.volume_path}/${local.container_name}/Caddyfile"
+      host_path      = "${var.volume_path}/${local.container_name}/Caddyfile"
       container_path = "/etc/caddy/Caddyfile"
-      read_only = true
+      read_only      = true
     },
     {
-      host_path = "${var.volume_path}/${local.container_name}/.env"
+      host_path      = "${var.volume_path}/${local.container_name}/.env"
       container_path = "/pelican-data/.env"
-      read_only = true
+      read_only      = true
     }
   ]
-  env_vars       = {
+  env_vars = {
     TZ           = var.timezone
     PUID         = var.user_id
     PGID         = var.group_id
@@ -95,6 +95,6 @@ output "service_definition" {
     name         = local.container_name
     primary_port = local.pelican_internal_port
     endpoint     = "http://${local.container_name}:${local.pelican_internal_port}"
-    subdomains    = ["gpanel"]
+    subdomains   = ["gpanel"]
   }
 }

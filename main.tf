@@ -7,19 +7,19 @@ module "services" {
 }
 
 locals {
-  volume_host = "${module.system_globals.volume_host}"
+  volume_host = module.system_globals.volume_host
 }
 
 module "caddy" {
-  source              = "./modules/01-networking/caddy-service"
-  volume_path         = "${local.volume_host}"
-  domains             = [
+  source      = "./modules/01-networking/caddy-service"
+  volume_path = local.volume_host
+  domains = [
     "blackchaosnl.myaddr.dev",
   ]
   tls_email           = "jjvijgen@gmail.com"
   container_name      = "caddy"
   service_definitions = module.services.service_definitions
-  networks            = [
+  networks = [
     module.services.infrastructure_int.name
   ]
 }

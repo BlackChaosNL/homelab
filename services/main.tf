@@ -15,72 +15,72 @@ module "infrastructure_int" {
   driver     = "bridge"
   attachable = true
   options = {
-    "isolate": false
+    "isolate" : false
   }
 }
 
 module "jellyfin" {
-  source = "${local.module_dir}/20-services-entertainment/jellyfin-service"
+  source      = "${local.module_dir}/20-services-entertainment/jellyfin-service"
   volume_path = "${local.root_volume}/jellyfin"
-  networks = [module.infrastructure_int.name]
+  networks    = [module.infrastructure_int.name]
 }
 
 module "calibre" {
-  source = "${local.module_dir}/20-services-entertainment/calibre-service"
+  source      = "${local.module_dir}/20-services-entertainment/calibre-service"
   volume_path = "${local.root_volume}/calibre"
-  networks = [module.infrastructure_int.name]
+  networks    = [module.infrastructure_int.name]
 }
 
 module "pelican" {
-  source = "${local.module_dir}/20-services-entertainment/pelican-service"
+  source      = "${local.module_dir}/20-services-entertainment/pelican-service"
   volume_path = "${local.root_volume}/pelican"
-  networks = [module.infrastructure_int.name]
+  networks    = [module.infrastructure_int.name]
 }
 
 module "wings" {
-  source = "${local.module_dir}/20-services-entertainment/wings-service"
+  source      = "${local.module_dir}/20-services-entertainment/wings-service"
   volume_path = "${local.root_volume}/wings"
-  networks = [module.infrastructure_int.name]
+  networks    = [module.infrastructure_int.name]
 }
 
 module "authentik" {
-  source = "${local.module_dir}/30-services-software/authentik-service"
+  source      = "${local.module_dir}/30-services-software/authentik-service"
   volume_path = "${local.root_volume}/authentik"
-  networks = [module.infrastructure_int.name]
+  networks    = [module.infrastructure_int.name]
 }
 
 module "traccar" {
-  source = "${local.module_dir}/30-services-software/traccar-service"
+  source      = "${local.module_dir}/30-services-software/traccar-service"
   volume_path = "${local.root_volume}/traccar"
-  networks = [module.infrastructure_int.name]
+  networks    = [module.infrastructure_int.name]
 }
 
 module "tandoor" {
-  source = "${local.module_dir}/30-services-software/tandoor-service"
+  source      = "${local.module_dir}/30-services-software/tandoor-service"
   volume_path = "${local.root_volume}/tandoor"
-  networks = [module.infrastructure_int.name]
+  networks    = [module.infrastructure_int.name]
 }
 
 module "qbittorrent" {
-  source = "${local.module_dir}/30-services-software/qbittorrent-service"
+  source      = "${local.module_dir}/30-services-software/qbittorrent-service"
   volume_path = "${local.root_volume}/qbittorrent"
-  networks = [module.infrastructure_int.name]
+  networks    = [module.infrastructure_int.name]
 }
 
 module "coder" {
-  source = "${local.module_dir}/30-services-software/coder-service"
+  source      = "${local.module_dir}/30-services-software/coder-service"
   volume_path = "${local.root_volume}/coder"
-  networks = [module.infrastructure_int.name]
+  networks    = [module.infrastructure_int.name]
 }
 
 module "actualbudget" {
-  source = "${local.module_dir}/30-services-software/actualbudget-service"
+  source      = "${local.module_dir}/30-services-software/actualbudget-service"
   volume_path = "${local.root_volume}/actualbudget"
-  networks = [module.infrastructure_int.name]
+  networks    = [module.infrastructure_int.name]
 }
 
 module "penpot" {
-  source = "${local.module_dir}/30-services-software/penpot-service"
+  source      = "${local.module_dir}/30-services-software/penpot-service"
   volume_path = "${local.root_volume}/penpot"
-  networks = [module.infrastructure_int.name]
+  networks    = [module.infrastructure_int.name]
 }

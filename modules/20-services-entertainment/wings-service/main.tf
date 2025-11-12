@@ -7,11 +7,11 @@ terraform {
 }
 
 locals {
-  container_name         = "pelican-wings"
-  wings_image            = "ghcr.io/pelican-dev/wings"
-  wings_tag              = var.image_tag
-  env_file               = "${path.module}/.env"
-  internal_port          = 8080
+  container_name = "pelican-wings"
+  wings_image    = "ghcr.io/pelican-dev/wings"
+  wings_tag      = var.image_tag
+  env_file       = "${path.module}/.env"
+  internal_port  = 8080
 
   wing_0_config = <<-EOT
   debug: false
@@ -36,8 +36,8 @@ locals {
 }
 
 resource "local_file" "wing_0_config_file" {
-    content  = local.wing_0_config
-    filename = "${var.volume_path}/${local.container_name}/wing-0-config.yml"
+  content  = local.wing_0_config
+  filename = "${var.volume_path}/${local.container_name}/wing-0-config.yml"
 }
 
 module "pelican-wings" {
@@ -47,47 +47,47 @@ module "pelican-wings" {
   tag            = local.wings_tag
   networks       = var.networks
   restart_policy = "always"
-  ports          = [
+  ports = [
     {
-        internal = 8080
-        external = 8080
-        protocol = "tcp"
+      internal = 8080
+      external = 8080
+      protocol = "tcp"
     },
     {
-        internal = 2022
-        external = 2022
-        protocol = "tcp"
+      internal = 2022
+      external = 2022
+      protocol = "tcp"
     }
   ]
-  volumes        = [
+  volumes = [
     {
-      host_path = "/run/user/1000/podman/podman.sock"
+      host_path      = "/run/user/1000/podman/podman.sock"
       container_path = "/var/run/docker.sock"
-      read_only = false
+      read_only      = false
     },
     {
-      host_path = "/home/jjvij/.local/share/containers"
+      host_path      = "/home/jjvij/.local/share/containers"
       container_path = "/var/lib/docker/containers/"
-      read_only = false
+      read_only      = false
     },
     {
-      host_path = "${var.volume_path}/${local.container_name}/wing-0-config.yml"
+      host_path      = "${var.volume_path}/${local.container_name}/wing-0-config.yml"
       container_path = "/etc/pelican/config.yml"
-      read_only = false
+      read_only      = false
     }
   ]
   env_vars = {
-    TZ               = var.timezone
-    APP_TIMEZONE     = var.timezone
-    WINGS_UID        = var.user_id
-    WINGS_GID        = var.group_id
-    WINGS_USERNAME   = "pelican"
+    TZ             = var.timezone
+    APP_TIMEZONE   = var.timezone
+    WINGS_UID      = var.user_id
+    WINGS_GID      = var.group_id
+    WINGS_USERNAME = "pelican"
   }
-  userns_mode    = "keep-id:uid=1000,gid=1000"
-  labels         = {
+  userns_mode = "keep-id:uid=1000,gid=1000"
+  labels = {
     "run.oci.keep_original_groups" = "1"
   }
-  security_opts  = [
+  security_opts = [
     "label:type:container_runtype_t"
   ]
 }
@@ -98,6 +98,6 @@ output "service_definition" {
     name         = local.container_name
     primary_port = local.internal_port
     endpoint     = "http://${local.container_name}:${local.internal_port}"
-    subdomains    = ["games"]
+    subdomains   = ["games"]
   }
 }

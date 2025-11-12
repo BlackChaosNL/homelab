@@ -181,20 +181,20 @@ variable "privileged" {
 
 variable "security_opts" {
   description = "Set's security options for container"
-  type = list(string)
-  default = null
+  type        = list(string)
+  default     = null
 }
 
 variable "userns_mode" {
   description = "Set's the USERNS Mode"
-  type = string
-  default = null
+  type        = string
+  default     = null
 }
 
 variable "gpus" {
   description = "Set the GPU passthrough"
-  type = string
-  default = null
+  type        = string
+  default     = null
 }
 
 // Logging options
@@ -207,8 +207,8 @@ variable "log_driver" {
 variable "log_opts" {
   description = "Log driver options"
   type        = map(string)
-  default     = {
-    max-size  = "10m"
-    max-file  = "3"
+  default = {
+    max-size = "10m"
+    max-file = "3"
   }
 }

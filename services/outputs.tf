@@ -17,5 +17,5 @@ output "service_definitions" {
 
 output "infrastructure_int" {
   description = "The internal infrastructure network"
-  value = module.infrastructure_int
+  value       = module.infrastructure_int
 }

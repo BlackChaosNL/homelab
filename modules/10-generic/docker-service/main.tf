@@ -61,7 +61,7 @@ resource "docker_container" "service_container" {
 
   # Set the network mode (bridge, host, etc.)
   network_mode = local.network_mode
-  
+
   # Add host mappings (entries for /etc/hosts)
   dynamic "host" {
     for_each = var.host_mappings
