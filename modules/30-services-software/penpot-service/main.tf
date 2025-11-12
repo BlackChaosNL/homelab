@@ -94,7 +94,7 @@ module "penpot-postgres" {
   tag            = local.postgres_tag
   volumes        = local.postgres_volumes
   env_vars       = local.postgres_env_vars
-  networks       = module.penpot_network.name
+  networks       = [module.penpot_network.name]
   restart_policy = "always"
 }
 
@@ -103,7 +103,7 @@ module "penpot-valkey" {
   container_name = local.valkey_container_name
   image          = local.valkey_image
   tag            = local.valkey_tag
-  networks       = module.penpot_network.name
+  networks       = [module.penpot_network.name]
   restart_policy = "always"
 }
 
@@ -113,7 +113,7 @@ module "penpot-exporter" {
   image          = local.penpot_backend_image
   tag            = local.penpot_backend_tag
   env_vars       = local.penpot_exporter_env_vars
-  networks       = module.penpot_network.name
+  networks       = [module.penpot_network.name]
   restart_policy = "always"
 }
 
@@ -124,7 +124,7 @@ module "penpot-backend" {
   tag            = local.penpot_backend_tag
   volumes        = local.penpot_volumes
   env_vars       = local.penpot_env_vars
-  networks       = module.penpot_network.name
+  networks       = [module.penpot_network.name]
   restart_policy = "always"
 }
 
