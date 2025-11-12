@@ -11,6 +11,7 @@ output "service_definitions" {
     module.qbittorrent.service_definition,
     module.coder.service_definition,
     module.actualbudget.service_definition,
+    module.penpot.service_definition,
   ]
 }
 

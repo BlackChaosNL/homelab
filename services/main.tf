@@ -79,3 +79,8 @@ module "actualbudget" {
   networks = [module.infrastructure_int.name]
 }
 
+module "penpot" {
+  source = "${local.module_dir}/30-services-software/penpot-service"
+  volume_path = "${local.root_volume}/penpot"
+  networks = [module.infrastructure_int.name]
+}
