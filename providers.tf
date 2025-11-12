@@ -19,4 +19,5 @@ terraform {
 
 provider "docker" {
   host = provider::dotenv::get_by_key("DOCKER_SOCK", "${path.module}/.env")
+
 }
