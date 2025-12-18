@@ -32,7 +32,7 @@ locals {
 
   penpot_volumes = [
     {
-      host_path      = "${module.penpot_temp_volume.name}"
+      host_path      = "${module.penpot_temp_volume.id}"
       container_path = "/opt/data/assets"
       read_only      = false
     }
