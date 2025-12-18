@@ -8,7 +8,7 @@ terraform {
 
 module "penpot_temp_volume" {
   source = "../../10-generic/docker-volumes"
-  temporary_volume = "penpot_temp"
+  name = "penpot_temp"
 }
 
 locals {

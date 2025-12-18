@@ -11,7 +11,7 @@ terraform {
 }
 
 locals {
-    name = var.temporary_volume
+    name = var.name
 }
 
 resource "docker_volume" "shared_volume" {
