@@ -6,6 +6,11 @@ terraform {
   }
 }
 
+module "penpot_temp_volume" {
+  source = "../../10-generic/docker-volumes"
+  temporary_volume = "penpot_temp"
+}
+
 locals {
   container_name          = "penpot"
   penpot_backend_name     = "penpot-backend"
@@ -27,7 +32,7 @@ locals {
 
   penpot_volumes = [
     {
-      host_path      = "${var.volume_path}/${local.container_name}/assets"
+      host_path      = "${module.penpot_temp_volume.name}"
       container_path = "/opt/data/assets"
       read_only      = false
     }
@@ -42,6 +47,7 @@ locals {
   ]
 
   penpot_exporter_env_vars = {
+    PENPOT_SECRET_KEY = provider::dotenv::get_by_key("PENPOT_SECRET_KEY", local.env_file)
     PENPOT_PUBLIC_URI = "http://${local.container_name}:${local.internal_port}"
     PENPOT_REDIS_URI  = "redis://${local.valkey_container_name}/0"
   }

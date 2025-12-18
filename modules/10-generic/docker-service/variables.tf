@@ -49,7 +49,7 @@ variable "networks" {
 }
 
 variable "volumes" {
-  description = "List of volume mappings"
+  description = "List of volume mappings that are hosted on disk"
   type = list(object({
     host_path      = string
     container_path = string
