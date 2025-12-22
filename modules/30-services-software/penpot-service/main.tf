@@ -119,7 +119,7 @@ module "penpot-valkey" {
 module "penpot-exporter" {
   source         = "../../10-generic/docker-service"
   container_name = local.penpot_exporter_name
-  image          = local.penpot_backend_image
+  image          = local.penpot_exporter_image
   tag            = local.penpot_backend_tag
   env_vars       = local.penpot_exporter_env_vars
   networks       = [module.penpot_network.name]
