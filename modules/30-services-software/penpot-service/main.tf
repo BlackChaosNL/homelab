@@ -6,7 +6,7 @@ terraform {
   }
 }
 
-module "penpot_temp_volume" {
+module "vol" {
   source = "../../10-generic/docker-volumes"
   name = "penpot_temp"
 }
@@ -32,7 +32,7 @@ locals {
 
   penpot_volumes = [
     {
-      host_path      = "${module.penpot_temp_volume.id}"
+      host_path      = "${module.vol.host_path}"
       container_path = "/opt/data/assets"
       read_only      = false
     }
