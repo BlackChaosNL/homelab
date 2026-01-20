@@ -29,6 +29,9 @@ locals {
   postgres_tag            = var.postgres_image_tag
   env_file                = "${path.module}/.env"
   internal_port           = 8080
+  USER_ID                 = var.user_id
+  GROUP_ID                = var.group_id
+
 
   penpot_volumes = [
     {
@@ -55,8 +58,8 @@ locals {
   # Disable emails and enable OIDC since this is a private instanced managed with Authentik
   penpot_frontend_env_vars = {
     PENPOT_FLAGS = "disable-registration disable-email-verification disable-smtp enable-prepl-server enable-login-with-oidc"
-    PUID=var.user_id
-    PGID=var.group_id
+    USER_ID=local.USER_ID
+    GROUP_ID=local.GROUP_ID
   }
 
   penpot_backend_env_vars = {
