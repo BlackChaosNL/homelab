@@ -30,13 +30,13 @@ variable "networks" {
 variable "user_id" {
   description = "User ID for container permissions"
   type        = string
-  default     = "1001"
+  default     = "1000"
 }
 
 variable "group_id" {
   description = "Group ID for container permissions"
   type        = string
-  default     = "1001"
+  default     = "1000"
 }
 
 variable "timezone" {
