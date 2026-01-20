@@ -58,8 +58,8 @@ locals {
   # Disable emails and enable OIDC since this is a private instanced managed with Authentik
   penpot_frontend_env_vars = {
     PENPOT_FLAGS = "disable-registration disable-email-verification disable-smtp enable-prepl-server enable-login-with-oidc"
-    USER_ID=local.USER_ID
-    GROUP_ID=local.GROUP_ID
+    PUID=local.USER_ID
+    PGID=local.GROUP_ID
   }
 
   penpot_backend_env_vars = {
