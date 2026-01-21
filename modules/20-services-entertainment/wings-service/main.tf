@@ -40,12 +40,25 @@ resource "local_file" "wing_0_config_file" {
   filename = "${var.volume_path}/${local.container_name}/wing-0-config.yml"
 }
 
+module "wings_network" {
+  source = "../../../01-networking/docker-network"
+
+  name       = "pelican-wings"
+  driver     = "bridge"
+  attachable = true
+  subnet     = "172.17.0.0/16"
+  options = {
+    "com.docker.network.bridge.name" = "pelican-wings"
+  }
+}
+
+
 module "pelican-wings" {
   source         = "../../10-generic/docker-service"
   container_name = local.container_name
   image          = local.wings_image
   tag            = local.wings_tag
-  networks       = var.networks
+  networks       = concat([var.wings_network.name], var.networks)
   restart_policy = "always"
   ports = [
     {
@@ -66,7 +79,7 @@ module "pelican-wings" {
       read_only      = false
     },
     {
-      host_path      = "/home/jjvij/.local/share/containers"
+      host_path      = "/home/jjvij/.local/share/containers/"
       container_path = "/var/lib/docker/containers/"
       read_only      = false
     },
