@@ -11,7 +11,7 @@ module "system_globals" {
 module "infrastructure_int" {
   source     = "../modules/01-networking/network-service"
   name       = "infrastructure_int"
-  subnet     = "172.16.0.0/12"
+  subnet     = "10.100.0.0/24"
   driver     = "bridge"
   attachable = true
   options = {

@@ -52,8 +52,8 @@ homelab/
 
 For the global network I use the following IP range and Subnet:
 
-- 172.16.0.0 - 172.16.252.252
-- 255.255.0.0 (/12)
+- 10.100.0.0 - 10.100.0.254
+- 255.255.255.0 (/24)
 
 You will get 253 usable host addresses per network. This network is mainly for connecting pods to Caddy as the external ingress.
 
@@ -61,7 +61,7 @@ You will get 253 usable host addresses per network. This network is mainly for c
 
 For connecting pods to each other (For example: Postgres -> Project <- Redis ) I use the following IP range and Subnet:
 
-- 172.32.0.0 - 172.32.0.254 
+- 172.17.0.0 - 172.17.0.254 
 - 255.255.255.248 (/29)
 
 You get 6 usable host addresses per internal network, to find the usable addresses you can check [here](https://www.calculator.net/ip-subnet-calculator.html?cclass=b&csubnet=29&cip=172.16.0.0&ctype=ipv4&x=Calculate).

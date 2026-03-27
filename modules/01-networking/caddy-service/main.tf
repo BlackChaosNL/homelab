@@ -39,7 +39,7 @@ locals {
     email ${var.tls_email}
 
     servers {
-        trusted_proxies static 172.16.0.0/12 10.0.0.0/8 192.168.0.0/16
+        trusted_proxies static 172.16.0.0/12 10.0.0.0/8 192.168.0.0/16 10.88.0.0/16 10.100.0.0/24
     }
 
     log {
