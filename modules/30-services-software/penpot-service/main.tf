@@ -85,7 +85,7 @@ locals {
 module "penpot_network" {
   source = "../../01-networking/network-service"
   name   = "penpot-network"
-  subnet = "172.16.0.32/29"
+  subnet = "172.17.0.32/29"
   driver = "bridge"
   options = {
     "isolate" : false

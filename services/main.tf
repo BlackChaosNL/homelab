@@ -11,7 +11,7 @@ module "system_globals" {
 module "infrastructure_int" {
   source     = "../modules/01-networking/network-service"
   name       = "infrastructure_int"
-  subnet     = "10.100.0.0/24"
+  subnet     = "172.16.0.0/12"
   driver     = "bridge"
   attachable = true
   options = {
@@ -22,18 +22,6 @@ module "infrastructure_int" {
 module "jellyfin" {
   source      = "${local.module_dir}/20-services-entertainment/jellyfin-service"
   volume_path = "${local.root_volume}/jellyfin"
-  networks    = [module.infrastructure_int.name]
-}
-
-module "calibre" {
-  source      = "${local.module_dir}/20-services-entertainment/calibre-service"
-  volume_path = "${local.root_volume}/calibre"
-  networks    = [module.infrastructure_int.name]
-}
-
-module "pelican" {
-  source      = "${local.module_dir}/20-services-entertainment/pelican-service"
-  volume_path = "${local.root_volume}/pelican"
   networks    = [module.infrastructure_int.name]
 }
 
@@ -55,21 +43,9 @@ module "tandoor" {
   networks    = [module.infrastructure_int.name]
 }
 
-module "qbittorrent" {
-  source      = "${local.module_dir}/30-services-software/qbittorrent-service"
-  volume_path = "${local.root_volume}/qbittorrent"
-  networks    = [module.infrastructure_int.name]
-}
-
 module "coder" {
   source      = "${local.module_dir}/30-services-software/coder-service"
   volume_path = "${local.root_volume}/coder"
-  networks    = [module.infrastructure_int.name]
-}
-
-module "actualbudget" {
-  source      = "${local.module_dir}/30-services-software/actualbudget-service"
-  volume_path = "${local.root_volume}/actualbudget"
   networks    = [module.infrastructure_int.name]
 }
 

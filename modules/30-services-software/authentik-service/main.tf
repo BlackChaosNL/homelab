@@ -80,7 +80,7 @@ resource "local_file" "authentik_config_file" {
 module "authentik_network" {
   source = "../../01-networking/network-service"
   name   = "authentik-network"
-  subnet = "172.16.0.0/29"
+  subnet = "172.17.0.0/29"
   driver = "bridge"
   options = {
     "isolate" : false
