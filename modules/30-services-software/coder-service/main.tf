@@ -53,7 +53,7 @@ locals {
 module "coder_network" {
   source = "../../01-networking/network-service"
   name   = "coder-network"
-  subnet = "172.17.0.16/29"
+  subnet = "172.32.0.16/29"
   driver = "bridge"
   options = {
     "isolate" : false

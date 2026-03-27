@@ -46,7 +46,7 @@ module "wings_network" {
   name       = "pelican-wings"
   driver     = "bridge"
   attachable = true
-  subnet     = "172.18.0.0/16"
+  subnet     = "172.64.0.0/16"
   options = {
     "com.docker.network.bridge.name" = "pelican-wings"
   }
