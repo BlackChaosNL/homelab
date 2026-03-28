@@ -39,7 +39,6 @@ locals {
           scopes: "email openid profile groups"
           userIdentifier: "preferred_username"
           createUser: true
-          userGroups: "user"
           adminGroup: "admin"
           groupsClaim: "groups"
         password:
