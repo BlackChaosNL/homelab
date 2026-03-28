@@ -27,10 +27,10 @@ locals {
     sources:
       - path: "/black"
         config:
-          defaultEnabled: false
+          denyByDefault: false
       - path: "/blue"
         config:
-          defaultEnabled: false
+          denyByDefault: false
   auth:
     methods:
         oidc:
