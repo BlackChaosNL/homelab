@@ -25,14 +25,10 @@ locals {
   fs_settings = <<-EOT
   server:
     sources:
-      - path: "/black"
+      - path: "/home/filebrowser/black"
         name: "hdd"
-        config:
-          denyByDefault: false
-      - path: "/blue"
+      - path: "/home/filebrowser/blue"
         name: "ssd"
-        config:
-          denyByDefault: false
   auth:
     methods:
         oidc:
