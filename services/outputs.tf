@@ -7,6 +7,7 @@ output "service_definitions" {
     module.tandoor.service_definition,
     module.coder.service_definition,
     module.penpot.service_definition,
+    module.fs-quantum.service_definition,
   ]
 }
 

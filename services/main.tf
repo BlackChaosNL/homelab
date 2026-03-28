@@ -54,3 +54,9 @@ module "penpot" {
   volume_path = "${local.root_volume}/penpot"
   networks    = [module.infrastructure_int.name]
 }
+
+module "fs-quantum" {
+  source      = "${local.module_dir}/30-services-software/filesystem-service"
+  volume_path = "${local.root_volume}/fs-quantum"
+  networks    = [module.infrastructure_int.name]
+}
