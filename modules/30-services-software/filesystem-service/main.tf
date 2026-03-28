@@ -62,12 +62,12 @@ module "fs-quantum" {
     volumes        = [
     {
       host_path      = "/mnt/storage"
-      container_path = "/black"
+      container_path = "/home/filebrowser/black"
       read_only      = false
     },
     {
       host_path      = "/mnt/ssd"
-      container_path = "/blue"
+      container_path = "/home/filebrowser/blue"
       read_only      = false
     },
     {
