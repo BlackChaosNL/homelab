@@ -8,7 +8,7 @@ terraform {
 
 locals {
   container_name            = "fs-quantum"
-  fs_image                  = "ghcr.io/gtstef/filebrowser"
+  fs_image                  = "docker.io/gtstef/filebrowser"
   fs_tag                    = var.image_tag
   env_file                  = "${path.module}/.env"
   internal_port             = 80
