@@ -26,9 +26,11 @@ locals {
   server:
     sources:
       - path: "/black"
+        name: "hdd"
         config:
           denyByDefault: false
       - path: "/blue"
+        name: "ssd"
         config:
           denyByDefault: false
   auth:
