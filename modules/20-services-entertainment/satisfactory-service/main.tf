@@ -28,7 +28,7 @@ module "satisfactory" {
     {
       host_path      = "${var.volume_path}/${local.container_name}/config"
       container_path = "/config"
-      read_only      = true
+      read_only      = false
     },
   ]
   env_vars = {
