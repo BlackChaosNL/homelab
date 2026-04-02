@@ -25,6 +25,12 @@ module "jellyfin" {
   networks    = [module.infrastructure_int.name]
 }
 
+module "satisfactory" {
+  source      = "${local.module_dir}/20-services-entertainment/satisfactory-service"
+  volume_path = "${local.root_volume}/satisfactory"
+  networks    = [module.infrastructure_int.name]
+}
+
 module "authentik" {
   source      = "${local.module_dir}/30-services-software/authentik-service"
   volume_path = "${local.root_volume}/authentik"
@@ -60,3 +66,4 @@ module "fs-quantum" {
   volume_path = "${local.root_volume}/fs-quantum"
   networks    = [module.infrastructure_int.name]
 }
+
