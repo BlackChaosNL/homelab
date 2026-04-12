@@ -45,6 +45,7 @@ locals {
     SOCIALACCOUNT_AUTO_SIGNUP                       = provider::dotenv::get_by_key("SOCIALACCOUNT_AUTO_SIGNUP", local.env_file)
     SOCIALACCOUNT_EMAIL_AUTHENTICATION              = provider::dotenv::get_by_key("SOCIALACCOUNT_EMAIL_AUTHENTICATION", local.env_file)
     SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = provider::dotenv::get_by_key("SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT", local.env_file)
+    ACCOUNT_EMAIL_VERIFICATION                      = provider::dotenv::get_by_key("ACCOUNT_EMAIL_VERIFICATION", local.env_file)
     ENABLE_SIGNUP                                   = provider::dotenv::get_by_key("ENABLE_SIGNUP", local.env_file)
     MEDIA_URL                                       = provider::dotenv::get_by_key("MEDIA_URL", local.env_file)
     SECRET_KEY                                      = provider::dotenv::get_by_key("SECRET_KEY", local.env_file)
