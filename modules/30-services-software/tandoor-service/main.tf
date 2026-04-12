@@ -37,19 +37,24 @@ locals {
   ]
 
   tandoor_env_vars = {
-    SOCIAL_PROVIDERS        = provider::dotenv::get_by_key("SOCIAL_PROVIDERS", local.env_file)
-    SOCIALACCOUNT_PROVIDERS = provider::dotenv::get_by_key("SOCIALACCOUNT_PROVIDERS", local.env_file)
-    ENABLE_SIGNUP           = provider::dotenv::get_by_key("ENABLE_SIGNUP", local.env_file)
-    MEDIA_URL               = provider::dotenv::get_by_key("MEDIA_URL", local.env_file)
-    SECRET_KEY              = provider::dotenv::get_by_key("SECRET_KEY", local.env_file)
-    DEBUG                   = provider::dotenv::get_by_key("DEBUG", local.env_file)
-    ALLOWED_HOSTS           = provider::dotenv::get_by_key("ALLOWED_HOSTS", local.env_file)
-    DB_ENGINE               = provider::dotenv::get_by_key("DB_ENGINE", local.env_file)
-    POSTGRES_HOST           = provider::dotenv::get_by_key("POSTGRES_HOST", local.env_file)
-    POSTGRES_DB             = provider::dotenv::get_by_key("POSTGRES_DB", local.env_file)
-    POSTGRES_PORT           = provider::dotenv::get_by_key("POSTGRES_PORT", local.env_file)
-    POSTGRES_USER           = provider::dotenv::get_by_key("POSTGRES_USER", local.env_file)
-    POSTGRES_PASSWORD       = provider::dotenv::get_by_key("POSTGRES_PASSWORD", local.env_file)
+    ALLAUTH_TRUSTED_PROXY_COUNT        = provider::dotenv::get_by_key("ALLAUTH_TRUSTED_PROXY_COUNT", local.env_file)
+    SOCIAL_PROVIDERS                   = provider::dotenv::get_by_key("SOCIAL_PROVIDERS", local.env_file)
+    SOCIALACCOUNT_PROVIDERS            = provider::dotenv::get_by_key("SOCIALACCOUNT_PROVIDERS", local.env_file)
+    SOCIALACCOUNT_ONLY                 = provider::dotenv::get_by_key("SOCIALACCOUNT_ONLY", local.env_file)
+    SOCIALACCOUNT_LOGIN_ON_GET         = provider::dotenv::get_by_key("SOCIALACCOUNT_LOGIN_ON_GET", local.env_file)
+    SOCIALACCOUNT_AUTO_SIGNUP          = provider::dotenv::get_by_key("SOCIALACCOUNT_AUTO_SIGNUP", local.env_file)
+    SOCIALACCOUNT_EMAIL_AUTHENTICATION = provider::dotenv::get_by_key("SOCIALACCOUNT_EMAIL_AUTHENTICATION", local.env_file)
+    ENABLE_SIGNUP                      = provider::dotenv::get_by_key("ENABLE_SIGNUP", local.env_file)
+    MEDIA_URL                          = provider::dotenv::get_by_key("MEDIA_URL", local.env_file)
+    SECRET_KEY                         = provider::dotenv::get_by_key("SECRET_KEY", local.env_file)
+    DEBUG                              = provider::dotenv::get_by_key("DEBUG", local.env_file)
+    ALLOWED_HOSTS                      = provider::dotenv::get_by_key("ALLOWED_HOSTS", local.env_file)
+    DB_ENGINE                          = provider::dotenv::get_by_key("DB_ENGINE", local.env_file)
+    POSTGRES_HOST                      = provider::dotenv::get_by_key("POSTGRES_HOST", local.env_file)
+    POSTGRES_DB                        = provider::dotenv::get_by_key("POSTGRES_DB", local.env_file)
+    POSTGRES_PORT                      = provider::dotenv::get_by_key("POSTGRES_PORT", local.env_file)
+    POSTGRES_USER                      = provider::dotenv::get_by_key("POSTGRES_USER", local.env_file)
+    POSTGRES_PASSWORD                  = provider::dotenv::get_by_key("POSTGRES_PASSWORD", local.env_file)
   }
 
   postgres_env_vars = {
