@@ -12,6 +12,7 @@ locals {
   eco_tag           = var.image_tag
   env_file          = "${path.module}/.env"
   eco_internal_port = 3000
+  eco_token         = provider::dotenv::get_by_key("TOKEN", local.env_file)
 }
 
 module "eco" {
@@ -21,6 +22,7 @@ module "eco" {
   tag            = local.eco_tag
   networks       = var.networks
   restart_policy = "always"
+  command        = [ "./EcoServer", "--nogui", "--userToken=${local.eco_token}" ]
   ports = [
     {
       internal = 3000
