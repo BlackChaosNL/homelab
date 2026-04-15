@@ -18,7 +18,7 @@ module "eco" {
   source         = "../../10-generic/docker-service"
   container_name = local.container_name
   image          = local.eco_image
-  tag            = local.eco_internal_port
+  tag            = local.eco_tag
   networks       = var.networks
   restart_policy = "always"
   ports = [
