@@ -45,12 +45,7 @@ module "eco" {
       host_path      = "${var.volume_path}/${local.container_name}/data"
       container_path = "/app/Storage/"
       read_only      = false
-    },
-    {
-      host_path      = "${var.volume_path}/${local.container_name}/mods"
-      container_path = "/app/Mods/"
-      read_only      = false
-    },
+    }
   ]
 }
 
