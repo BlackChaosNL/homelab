@@ -50,11 +50,6 @@ module "eco" {
       read_only      = false
     },
   ]
-  env_vars = {
-    MAXPLAYERS   = provider::dotenv::get_by_key("MAXPLAYERS", local.env_file)
-    PUID         = var.user_id
-    PGID         = var.group_id
-  }
 }
 
 
