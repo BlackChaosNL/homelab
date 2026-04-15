@@ -31,6 +31,12 @@ module "satisfactory" {
   networks    = [module.infrastructure_int.name]
 }
 
+module "eco" {
+  source      = "${local.module_dir}/20-services-entertainment/eco-service"
+  volume_path = "${local.root_volume}/eco"
+  networks    = [module.infrastructure_int.name]
+}
+
 module "authentik" {
   source      = "${local.module_dir}/30-services-software/authentik-service"
   volume_path = "${local.root_volume}/authentik"

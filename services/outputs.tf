@@ -3,6 +3,7 @@ output "service_definitions" {
   value = [
     module.jellyfin.service_definition,
     module.satisfactory.service_definition,
+    module.eco.service_definition,
     module.authentik.service_definition,
     module.traccar.service_definition,
     module.tandoor.service_definition,
