@@ -146,6 +146,11 @@ module "caddy" {
       host_path      = "${var.volume_path}/${local.container_name}/Caddyfile"
       container_path = "/etc/caddy/Caddyfile"
       read_only      = true
+    },
+    {
+      host_path      = "${var.volume_path}/${local.container_name}/caddy"
+      container_path = "/etc/caddy/caddy"
+      read_only      = true
     }
   ]
 
