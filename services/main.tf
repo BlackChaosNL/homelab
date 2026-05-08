@@ -12,7 +12,7 @@ module "infrastructure_int" {
   source     = "../modules/01-networking/network-service"
   name       = "infrastructure_int"
   subnet     = "10.100.0.0/24"
-  driver     = "bridge"
+  driver     = "pasta"
   attachable = true
   options = {
     "isolate" : false
