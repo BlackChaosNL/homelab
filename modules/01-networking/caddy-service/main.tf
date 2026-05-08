@@ -114,12 +114,12 @@ resource "local_file" "caddyfile" {
   filename = "${var.volume_path}/${local.container_name}/Caddyfile"
 }
 
-resource "local_file" "security.caddyfile" {
+resource "local_file" "security_caddyfile" {
   content  = local.caddyfile_security
   filename = "${var.volume_path}/${local.container_name}/caddy/security.caddyfile"
 }
 
-resource "local_file" "generated.caddyfile" {
+resource "local_file" "generated_caddyfile" {
   content  = local.generate_caddyfile_content
   filename = "${var.volume_path}/${local.container_name}/caddy/generated.caddyfile"
 }
