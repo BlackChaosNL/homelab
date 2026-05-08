@@ -167,4 +167,5 @@ module "caddy" {
   ]
 
   networks = var.networks
+  network_mode = "pasta"
 }
