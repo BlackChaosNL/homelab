@@ -76,7 +76,6 @@ locals {
     # !!!DO NOT EDIT!!!
     # Automatically generated through OpenTofu, changes will not be persisted upon reapplication.
     ${site.site_address} {
-      import headers
       route {
         %{if site.is_route_protected}
         reverse_proxy /outpost.goauthentik.io/* http://authentik:9000
