@@ -35,6 +35,8 @@ locals {
   ])
 
   caddyfile_default = <<-EOT
+  # !!!DO NOT EDIT!!!
+  # Automatically generated through OpenTofu, changes will not be persisted upon reapplication.
   {
     email ${var.tls_email}
 
@@ -48,6 +50,12 @@ locals {
     }
   }
 
+  import caddy/*.caddyfile
+  EOT
+
+  caddyfile_security = <<-EOT
+  # !!!DO NOT EDIT!!!
+  # Automatically generated through OpenTofu, changes will not be persisted upon reapplication.
   (headers) {
     header {
       -server
@@ -58,14 +66,15 @@ locals {
       X-Content-Type-Options "nosniff"
     }
   }
-
   EOT
 
   // Generate the main Caddyfile content
-  caddyfile_content = format("%s%s", local.caddyfile_default, join("\n\n", [
+  generate_caddyfile_content = join("\n\n", [
     for site in local.caddy_site_configs :
     // Use the custom Caddy config if provided
     <<-EOT
+    # !!!DO NOT EDIT!!!
+    # Automatically generated through OpenTofu, changes will not be persisted upon reapplication.
     ${site.site_address} {
       import headers
       route {
@@ -101,10 +110,19 @@ resource "docker_volume" "caddy_config" {
 
 // Create Caddyfile in the volume path
 resource "local_file" "caddyfile" {
-  content  = local.caddyfile_content
+  content  = local.caddyfile_default
   filename = "${var.volume_path}/${local.container_name}/Caddyfile"
 }
 
+resource "local_file" "security.caddyfile" {
+  content  = local.caddyfile_security
+  filename = "${var.volume_path}/${local.container_name}/caddy/security.caddyfile"
+}
+
+resource "local_file" "generated.caddyfile" {
+  content  = local.generate_caddyfile_content
+  filename = "${var.volume_path}/${local.container_name}/caddy/generated.caddyfile"
+}
 
 module "caddy" {
   source = "../../10-generic/docker-service"
