@@ -101,7 +101,7 @@ locals {
     }
     EOT
 
-]))
+])
 }
 
 resource "docker_volume" "caddy_config" {
