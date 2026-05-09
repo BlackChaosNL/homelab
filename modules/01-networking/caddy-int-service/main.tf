@@ -38,34 +38,14 @@ locals {
   # !!!DO NOT EDIT!!!
   # Automatically generated through OpenTofu, changes will not be persisted upon reapplication.
   {
-    email ${var.tls_email}
+    auto_https off
 
     servers {
         trusted_proxies static 172.16.0.0/12 10.0.0.0/8 192.168.0.0/16 10.88.0.0/16 10.100.0.0/24
     }
-
-    log {
-      format console
-      output stdout
-    }
   }
 
   import caddy/*.caddyfile
-  EOT
-
-  caddyfile_security = <<-EOT
-  # !!!DO NOT EDIT!!!
-  # Automatically generated through OpenTofu, changes will not be persisted upon reapplication.
-  (headers) {
-    header {
-      -server
-      -via
-      
-      Permissions-Policy interest-cohort=()
-      Strict-Transport-Security "max-age=31536000; includesSubDomains; preload"
-      X-Content-Type-Options "nosniff"
-    }
-  }
   EOT
 
   // Generate the main Caddyfile content
@@ -75,31 +55,21 @@ locals {
     <<-EOT
     # !!!DO NOT EDIT!!!
     # Automatically generated through OpenTofu, changes will not be persisted upon reapplication.
-    ${site.site_address} {
-      route {
-        %{if site.is_route_protected}
-        reverse_proxy /outpost.goauthentik.io/* http://authentik:9000
-
-        forward_auth http://authentik:9000 {
-            uri /outpost.goauthentik.io/auth/caddy
-            copy_headers X-Authentik-Username X-Authentik-Groups X-Authentik-Entitlements X-Authentik-Email X-Authentik-Name X-Authentik-Uid X-Authentik-Jwt X-Authentik-Meta-Jwks X-Authentik-Meta-Outpost X-Authentik-Meta-Provider X-Authentik-Meta-App X-Authentik-Meta-Version
-            trusted_proxies private_ranges
+    :80 {
+      @${site.service_name} host ${site.site_address}
+      handle @${site.service_name} {
+        route {
+          %{if site.has_custom_config}
+          ${site.custom_config}
+          %{else}
+          reverse_proxy ${site.endpoint} {
+            ${join("\n        ", [ for key, value in site.reverse_proxy_options : "${key} ${value}" ])}
+          }
+          %{endif}
         }
-        %{endif}
-        %{if site.has_custom_config}
-        ${site.custom_config}
-        %{else}
-        reverse_proxy ${site.endpoint} {
-          ${join("\n        ", [
-    for key, value in site.reverse_proxy_options :
-    "${key} ${value}"
-  ])}
-        }
-        %{endif}
       }
     }
     EOT
-
 ])
 }
 
@@ -111,11 +81,6 @@ resource "docker_volume" "caddy_config" {
 resource "local_file" "caddyfile" {
   content  = local.caddyfile_default
   filename = "${var.volume_path}/${local.container_name}/Caddyfile"
-}
-
-resource "local_file" "security_caddyfile" {
-  content  = local.caddyfile_security
-  filename = "${var.volume_path}/${local.container_name}/caddy/security.caddyfile"
 }
 
 resource "local_file" "generated_caddyfile" {
@@ -155,13 +120,8 @@ module "caddy" {
 
   ports = [
     {
-      external = "80"
+      external = "8080"
       internal = "80"
-      protocol = "tcp"
-    },
-    {
-      external = "443"
-      internal = "443"
       protocol = "tcp"
     }
   ]

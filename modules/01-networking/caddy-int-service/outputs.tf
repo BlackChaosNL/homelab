@@ -5,7 +5,7 @@ output "container_name" {
 
 output "config_hash" {
   description = "The SHA256 hash of the generated Caddyfile content"
-  value       = sha256(format("%s%s%s", local.caddyfile_default, local.caddyfile_security, local.generate_caddyfile_content))
+  value       = sha256(format("%s%s%s", local.caddyfile_default, local.generate_caddyfile_content))
 }
 
 output "service_sites" {

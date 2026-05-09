@@ -1,7 +1,7 @@
 variable "container_name" {
   description = "The name of the Caddy container"
   type        = string
-  default     = ""
+  default     = "caddy_int"
 }
 
 variable "image_tag" {
@@ -18,11 +18,6 @@ variable "volume_path" {
 variable "domains" {
   description = "Which domain names to use for services"
   type        = list(string)
-}
-
-variable "tls_email" {
-  description = "Email address to use for TLS certificate generation with Let's Encrypt"
-  type        = string
 }
 
 variable "service_definitions" {

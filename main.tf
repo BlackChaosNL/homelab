@@ -10,16 +10,24 @@ locals {
   volume_host = module.system_globals.volume_host
 }
 
-module "caddy" {
-  source      = "./modules/01-networking/caddy-service"
+module "caddy-ext" {
+  source      = "./modules/01-networking/caddy-ext-service"
   volume_path = local.volume_host
-  domains = [
+  tls_email   = "jjvijgen@gmail.com"
+  domains     = [
     "blackchaosnl.myaddr.dev",
   ]
-  tls_email           = "jjvijgen@gmail.com"
-  container_name      = "caddy"
   service_definitions = module.services.service_definitions
-  networks = [
+}
+
+module "caddy-int" {
+  source      = "./modules/01-networking/caddy-int-service"
+  volume_path = local.volume_host
+  domains     = [
+    "blackchaosnl.myaddr.dev",
+  ]
+  service_definitions = module.services.service_definitions
+  networks    = [
     module.services.infrastructure_int.name
   ]
 }
