@@ -10,6 +10,7 @@ output "service_definitions" {
     module.coder.service_definition,
     module.penpot.service_definition,
     module.fs-quantum.service_definition,
+    module.gitea.service_definition,
   ]
 }
 
