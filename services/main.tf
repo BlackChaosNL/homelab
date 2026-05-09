@@ -75,6 +75,6 @@ module "fs-quantum" {
 
 module "gitea" {
   source      = "${local.module_dir}/30-services-software/git-service"
-  volume_path = "${local.module_dir}/gitea"
+  volume_path = "${local.root_volume}/gitea"
   networks    = [module.infrastructure_int.name]
 }

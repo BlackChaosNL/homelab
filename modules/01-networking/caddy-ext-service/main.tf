@@ -28,11 +28,11 @@ locals {
   # !!!DO NOT EDIT!!!
   # Automatically generated through OpenTofu, changes will not be persisted upon reapplication.
   {
-    tls ${var.tls_email}
+    email ${var.tls_email}
   }
 
-  ${join(", ", flatten(var.domains))} ${join(", ", flatten(local.caddy_site_configs))} { 
-      reverse_proxy http://anubis:3000 {
+  ${join(" ", flatten(var.domains))} ${join(" ", flatten(local.caddy_site_configs))} {
+      reverse_proxy http://10.88.0.1:3333 {
         header_up X-Real-Ip {remote_host}
         header_up X-Http-Version {http.request.proto}
       }

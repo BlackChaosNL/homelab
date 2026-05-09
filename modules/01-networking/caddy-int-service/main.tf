@@ -45,7 +45,9 @@ locals {
     }
   }
 
-  import caddy/*.caddyfile
+  :80 {
+    import caddy/*.caddyfile
+  }
   EOT
 
   // Generate the main Caddyfile content
@@ -55,22 +57,20 @@ locals {
     <<-EOT
     # !!!DO NOT EDIT!!!
     # Automatically generated through OpenTofu, changes will not be persisted upon reapplication.
-    :80 {
-      @${site.service_name} host ${site.site_address}
-      handle @${site.service_name} {
-        route {
-          %{if site.has_custom_config}
-          ${site.custom_config}
-          %{else}
-          reverse_proxy ${site.endpoint} {
-            ${join("\n        ", [ for key, value in site.reverse_proxy_options : "${key} ${value}" ])}
-          }
-          %{endif}
+    @${site.service_name} host ${site.site_address}
+    handle @${site.service_name} {
+      route {
+        %{if site.has_custom_config}
+        ${site.custom_config}
+        %{else}
+        reverse_proxy ${site.endpoint} {
+          ${join("\n        ", [for key, value in site.reverse_proxy_options : "${key} ${value}"])}
         }
+        %{endif}
       }
     }
     EOT
-])
+  ])
 }
 
 resource "docker_volume" "caddy_config" {
