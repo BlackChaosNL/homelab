@@ -32,7 +32,10 @@ locals {
   }
 
   ${join(", ", flatten(var.domains))} ${join(", ", flatten(local.caddy_site_configs))} { 
-      reverse_proxy 10.100.0.1:8080
+      reverse_proxy http://anubis:3000 {
+        header_up X-Real-Ip {remote_host}
+        header_up X-Http-Version {http.request.proto}
+      }
   }
   EOT
 }

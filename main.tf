@@ -20,6 +20,10 @@ module "caddy-ext" {
   service_definitions = module.services.service_definitions
 }
 
+module "anubis" {
+  source = "./modules/01-networking/anubis-service"
+}
+
 module "caddy-int" {
   source      = "./modules/01-networking/caddy-int-service"
   volume_path = local.volume_host
