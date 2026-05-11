@@ -2,17 +2,17 @@ terraform {
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"
-      version = "~> 3.6.0"
+      version = "4.3.0"
     }
 
     random = {
       source  = "hashicorp/random"
-      version = "~> 3.5.1"
+      version = "3.8.1"
     }
 
     dotenv = {
       source  = "germanbrew/dotenv"
-      version = "1.2.5"
+      version = "1.2.10"
     }
   }
 }
