@@ -26,12 +26,6 @@ variable "restart_policy" {
   default     = "always"
 }
 
-variable "network_mode" {
-  description = "Network mode (bridge, host, etc.)"
-  type        = string
-  default     = "bridge"
-}
-
 variable "ports" {
   description = "List of port mappings"
   type = list(object({

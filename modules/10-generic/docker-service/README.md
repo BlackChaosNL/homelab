@@ -24,7 +24,6 @@ module "my_service" {
   tag            = "latest"
 
   restart_policy = "unless-stopped"
-  network_mode   = "bridge"
 
   // Port mappings
   ports = [

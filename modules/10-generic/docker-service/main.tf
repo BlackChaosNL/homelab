@@ -14,7 +14,6 @@ terraform {
 }
 
 locals {
-  network_mode   = var.network_mode
   container_name = var.container_name
   image_name     = "${var.image}:${var.tag}"
 
@@ -58,9 +57,6 @@ resource "docker_container" "service_container" {
   image = docker_image.service_image.image_id
 
   restart = var.restart_policy
-
-  # Set the network mode (bridge, host, etc.)
-  network_mode = local.network_mode
 
   # Add host mappings (entries for /etc/hosts)
   dynamic "host" {
