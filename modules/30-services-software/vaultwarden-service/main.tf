@@ -15,6 +15,7 @@ locals {
 
   env_vars = {
     DOMAIN = "https://vaultwarden.blackchaosnl.myaddr.dev"
+    ADMIN_TOKEN = provider::dotenv::get_by_key("ADMIN_TOKEN", local.env_file)
   }
 }
 
