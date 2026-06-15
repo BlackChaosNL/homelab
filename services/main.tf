@@ -78,3 +78,9 @@ module "gitea" {
   volume_path = "${local.root_volume}/gitea"
   networks    = [module.infrastructure_int.name]
 }
+
+module "vaultwarden" {
+  source = "${local.module_dir}/30-services-software/vaultwarden"
+  volume_path = "${local.root_volume}/vaultwarden"
+  networks    = [module.infrastructure_int.name]
+}

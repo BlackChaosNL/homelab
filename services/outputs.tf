@@ -11,6 +11,7 @@ output "service_definitions" {
     module.penpot.service_definition,
     module.fs-quantum.service_definition,
     module.gitea.service_definition,
+    module.vaultwarden.service_definition,
   ]
 }
 
