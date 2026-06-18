@@ -84,3 +84,9 @@ module "vaultwarden" {
   volume_path = "${local.root_volume}/vaultwarden"
   networks    = [module.infrastructure_int.name]
 }
+
+module "kopia" {
+  source = "${local.module_dir}/30-services-software/kopia-service"
+  volume_path = "${local.root_volume}/kopia"
+  networks    = [module.infrastructure_int.name]
+}

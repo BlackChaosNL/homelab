@@ -12,6 +12,7 @@ output "service_definitions" {
     module.fs-quantum.service_definition,
     module.gitea.service_definition,
     module.vaultwarden.service_definition,
+    module.kopia.service_definition,
   ]
 }
 
