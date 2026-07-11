@@ -82,11 +82,8 @@ module "coder" {
   networks       = concat([module.coder_network.name], var.networks)
   restart_policy = "always"
   userns_mode    = "keep-id:uid=1000,gid=1000"
-  labels = {
-    "run.oci.keep_original_groups" = "1"
-  }
   security_opts = [
-    "label:type:container_runtype_t"
+    "label=type:container_runtime_t"
   ]
 }
 

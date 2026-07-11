@@ -25,27 +25,9 @@ module "jellyfin" {
   networks    = [module.infrastructure_int.name]
 }
 
-module "satisfactory" {
-  source      = "${local.module_dir}/20-services-entertainment/satisfactory-service"
-  volume_path = "${local.root_volume}/satisfactory"
-  networks    = [module.infrastructure_int.name]
-}
-
-module "eco" {
-  source      = "${local.module_dir}/20-services-entertainment/eco-service"
-  volume_path = "${local.root_volume}/eco"
-  networks    = [module.infrastructure_int.name]
-}
-
 module "authentik" {
   source      = "${local.module_dir}/30-services-software/authentik-service"
   volume_path = "${local.root_volume}/authentik"
-  networks    = [module.infrastructure_int.name]
-}
-
-module "traccar" {
-  source      = "${local.module_dir}/30-services-software/traccar-service"
-  volume_path = "${local.root_volume}/traccar"
   networks    = [module.infrastructure_int.name]
 }
 
@@ -58,18 +40,6 @@ module "tandoor" {
 module "coder" {
   source      = "${local.module_dir}/30-services-software/coder-service"
   volume_path = "${local.root_volume}/coder"
-  networks    = [module.infrastructure_int.name]
-}
-
-module "penpot" {
-  source      = "${local.module_dir}/30-services-software/penpot-service"
-  volume_path = "${local.root_volume}/penpot"
-  networks    = [module.infrastructure_int.name]
-}
-
-module "fs-quantum" {
-  source      = "${local.module_dir}/30-services-software/filesystem-service"
-  volume_path = "${local.root_volume}/fs-quantum"
   networks    = [module.infrastructure_int.name]
 }
 
