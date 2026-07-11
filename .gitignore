@@ -9,3 +9,4 @@ override.tf.json
 terraform.rc
 .env
 ./**/.env
+appdata/
