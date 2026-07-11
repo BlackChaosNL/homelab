@@ -25,7 +25,12 @@ module "kopia" {
     container_name = local.container_name
     image          = local.image
     tag            = local.tag
-    volumes        = [ 
+    volumes        = [
+        {
+            host_path = "${var.volume_path}/${local.container_name}/rclone.conf"
+            container_path = "/app/rclone/rclone.conf"
+            read_only = false
+        },
         {
             host_path = "${var.volume_path}/${local.container_name}/config"
             container_path = "/app/config"
