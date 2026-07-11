@@ -27,8 +27,8 @@ module "kopia" {
     tag            = local.tag
     volumes        = [
         {
-            host_path = "${var.volume_path}/${local.container_name}/rclone.conf"
-            container_path = "/app/rclone/rclone.conf"
+            host_path = "${var.volume_path}/${local.container_name}/rclone"
+            container_path = "/app/rclone/"
             read_only = false
         },
         {
