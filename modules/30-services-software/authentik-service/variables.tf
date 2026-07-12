@@ -2,19 +2,19 @@
 variable "image_tag" {
   description = "The tag for the authentik container image. Default: 2026.5"
   type        = string
-  default     = "2026.2"
+  default     = "2026.5"
 }
 
-variable "redis_image_tag" {
+variable "valkey_image_tag" {
   description = "The tag for the redis container image. Default: alpine"
   type        = string
   default     = "alpine"
 }
 
 variable "postgres_image_tag" {
-  description = "The tag for the postgres container image. Default: 17-alpine"
+  description = "The tag for the postgres container image. Default: 18-alpine"
   type        = string
-  default     = "17-alpine"
+  default     = "18-alpine"
 }
 
 variable "volume_path" {

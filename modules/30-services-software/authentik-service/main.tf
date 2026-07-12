@@ -8,13 +8,13 @@ terraform {
 
 locals {
   container_name          = "authentik"
-  redis_container_name    = "authentik-redis"
+  valkey_container_name   = "authentik-valkey"
   postgres_container_name = "authentik-postgres"
   authentik_image         = "ghcr.io/goauthentik/server"
-  redis_image             = "docker.io/library/redis"
+  valkey_image            = "docker.io/valkey/valkey"
   postgres_image          = "docker.io/library/postgres"
   authentik_tag           = var.image_tag
-  redis_tag               = var.redis_image_tag
+  valkey_tag              = var.valkey_image_tag
   postgres_tag            = var.postgres_image_tag
   env_file                = "${path.module}/.env"
   authentik_internal_port = 9000
@@ -97,11 +97,11 @@ module "authentik-postgres" {
   networks       = [module.authentik_network.name]
 }
 
-module "authentik-redis" {
+module "authentik-valkey" {
   source         = "../../10-generic/docker-service"
-  container_name = local.redis_container_name
-  image          = local.redis_image
-  tag            = local.redis_tag
+  container_name = local.valkey_container_name
+  image          = local.valkey_image
+  tag            = local.valkey_tag
   volumes        = local.redis_volumes
   networks       = [module.authentik_network.name]
 }

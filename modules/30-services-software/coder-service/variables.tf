@@ -5,9 +5,9 @@ variable "image_tag" {
 }
 
 variable "postgres_image_tag" {
-  description = "The tag for the postgres container image. Default: Latest"
+  description = "The tag for the postgres container image. Default: 18-alpine"
   type        = string
-  default     = "17-alpine"
+  default     = "18-alpine"
 }
 
 variable "volume_path" {
