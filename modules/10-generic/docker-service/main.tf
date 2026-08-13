@@ -137,6 +137,7 @@ resource "docker_container" "service_container" {
   security_opts = var.security_opts
   userns_mode   = var.userns_mode
   gpus          = var.gpus
+  network_mode  = var.network_mode
 
   # Set log options
   log_driver = var.log_driver
