@@ -191,6 +191,12 @@ variable "gpus" {
   default     = null
 }
 
+variable "network_mode" {
+  description = "Network Mode for the container"
+  type        = string
+  default     = "bridge"
+}
+
 // Logging options
 variable "log_driver" {
   description = "Log driver for the container"
