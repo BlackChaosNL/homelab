@@ -32,7 +32,7 @@ locals {
   }
 
   ${join(" ", flatten(var.domains))} ${join(" ", flatten(local.caddy_site_configs))} {
-      reverse_proxy http://10.88.0.1:3333 {
+      reverse_proxy http://localhost:3333 {
         header_up X-Real-Ip {remote_host}
         header_up X-Http-Version {http.request.proto}
       }
@@ -56,6 +56,7 @@ module "caddy" {
   container_name = local.container_name
   image          = "caddy"
   tag            = local.image_tag
+  network_mode   = "host"
 
   volumes = [
     {
