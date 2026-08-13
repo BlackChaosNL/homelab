@@ -12,9 +12,9 @@ variable "valkey_image_tag" {
 }
 
 variable "postgres_image_tag" {
-  description = "The tag for the postgres container image. Default: 18-alpine"
+  description = "The tag for the postgres container image. Default: 17-alpine"
   type        = string
-  default     = "18-alpine"
+  default     = "17-alpine"
 }
 
 variable "volume_path" {
