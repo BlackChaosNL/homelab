@@ -5,7 +5,7 @@ variable "image_tag" {
   default     = "2026.5"
 }
 
-variable "valkey_image_tag" {
+variable "redis_image_tag" {
   description = "The tag for the redis container image. Default: alpine"
   type        = string
   default     = "alpine"
