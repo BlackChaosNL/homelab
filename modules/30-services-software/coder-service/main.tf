@@ -40,6 +40,13 @@ locals {
     CODER_PROXY_TRUSTED_ORIGINS = provider::dotenv::get_by_key("CODER_PROXY_TRUSTED_ORIGINS", local.env_file)
     CODER_DISABLE_PASSWORD_AUTH = provider::dotenv::get_by_key("CODER_DISABLE_PASSWORD_AUTH", local.env_file)
     DOCKER_USER                 = provider::dotenv::get_by_key("DOCKER_USER", local.env_file)
+    CODER_OIDC_ISSUER_URL       = provider::dotenv::get_by_key("CODER_OIDC_ISSUER_URL", local.env_file)
+    CODER_OIDC_EMAIL_DOMAIN     = provider::dotenv::get_by_key("CODER_OIDC_EMAIL_DOMAIN", local.env_file)
+    CODER_OIDC_CLIENT_ID        = provider::dotenv::get_by_key("CODER_OIDC_CLIENT_ID", local.env_file)
+    CODER_OIDC_CLIENT_SECRET    = provider::dotenv::get_by_key("CODER_OIDC_CLIENT_SECRET", local.env_file)
+    CODER_OIDC_SCOPES           = provider::dotenv::get_by_key("CODER_OIDC_SCOPES", local.env_file)
+    CODER_OIDC_SIGN_IN_TEXT     = provider::dotenv::get_by_key("CODER_OIDC_SIGN_IN_TEXT", local.env_file)
+    CODER_OIDC_ICON_URL         = provider::dotenv::get_by_key("CODER_OIDC_ICON_URL", local.env_file)
   }
 
   postgres_env_vars = {
