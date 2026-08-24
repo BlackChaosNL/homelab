@@ -20,6 +20,7 @@ module "arma3" {
   image          = local.arma3_image
   tag            = local.arma3_tag
   networks       = var.networks
+  memory_limit   = 8192
   restart_policy = "always"
   ports = [
     {
