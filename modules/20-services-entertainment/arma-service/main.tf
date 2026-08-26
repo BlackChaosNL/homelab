@@ -21,7 +21,6 @@ module "arma3" {
   tag               = local.tag
   networks          = var.networks
   memory_limit      = 8192
-  memory_swap_limit = 4096
   restart_policy    = "always"
   ports = [
     {
