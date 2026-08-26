@@ -7,11 +7,11 @@ terraform {
 }
 
 locals {
-  container_name      = "arma3"
-  image               = "ghcr.io/gameservermanagers/gameserver"
-  tag                 = var.image_tag
-  env_file            = "${path.module}/.env"
-  internal_port = 2344
+  container_name = "arma3"
+  image          = "ghcr.io/gameservermanagers/gameserver"
+  tag            = var.image_tag
+  env_file       = "${path.module}/.env"
+  internal_port  = 2344
 }
 
 module "arma3" {
