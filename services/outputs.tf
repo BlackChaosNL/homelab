@@ -8,6 +8,7 @@ output "service_definitions" {
     module.gitea.service_definition,
     module.vaultwarden.service_definition,
     module.kopia.service_definition,
+    module.arma3.service_definition,
   ]
 }
 

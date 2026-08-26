@@ -60,3 +60,9 @@ module "kopia" {
   volume_path = "${local.root_volume}/kopia"
   networks    = [module.infrastructure_int.name]
 }
+
+module "arma3" {
+  source = "${local.module_dir}/20-services-entertainment/arma-service"
+  volume_path = "${local.root_volume}/arma3"
+  networks    = [module.infrastructure_int.name]
+}

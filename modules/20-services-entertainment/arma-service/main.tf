@@ -8,20 +8,21 @@ terraform {
 
 locals {
   container_name      = "arma3"
-  arma3_image         = "ghcr.io/gameservermanagers/gameserver"
-  arma3_tag           = var.image_tag
+  image               = "ghcr.io/gameservermanagers/gameserver"
+  tag                 = var.image_tag
   env_file            = "${path.module}/.env"
-  arma3_internal_port = 2344
+  internal_port = 2344
 }
 
 module "arma3" {
-  source         = "../../10-generic/docker-service"
-  container_name = local.container_name
-  image          = local.arma3_image
-  tag            = local.arma3_tag
-  networks       = var.networks
-  memory_limit   = 8192
-  restart_policy = "always"
+  source            = "../../10-generic/docker-service"
+  container_name    = local.container_name
+  image             = local.image
+  tag               = local.tag
+  networks          = var.networks
+  memory_limit      = 8192
+  memory_swap_limit = 4096
+  restart_policy    = "always"
   ports = [
     {
       internal = 2344
@@ -78,7 +79,7 @@ output "service_definition" {
   description = "General service definition with optional ingress configuration"
   value = {
     name         = local.container_name
-    primary_port = local.arma3_internal_port
-    endpoint     = "http://${local.container_name}:${local.arma3_internal_port}"
+    primary_port = local.internal_port
+    endpoint     = "http://${local.container_name}:${local.internal_port}"
   }
 }
