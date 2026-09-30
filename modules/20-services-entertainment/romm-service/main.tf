@@ -64,6 +64,8 @@ locals {
     DB_NAME                     = provider::dotenv::get_by_key("ROMM_POSTGRESQL_DB", local.env_file)
     DB_USER                     = provider::dotenv::get_by_key("ROMM_POSTGRESQL_USER", local.env_file)
     DB_PASSWD                   = provider::dotenv::get_by_key("ROMM_POSTGRESQL_PASSWORD", local.env_file)
+    REDIS_HOST                  = local.valkey_container_name
+    REDIS_PORT                  = 6379
     ROMM_AUTH_SECRET_KEY        = provider::dotenv::get_by_key("ROMM_SECRET_KEY", local.env_file)
     PLAYMATCH_API_ENABLED       = true
     IGDB_CLIENT_ID              = provider::dotenv::get_by_key("ROMM_IGDB_CLIENT_ID", local.env_file)
