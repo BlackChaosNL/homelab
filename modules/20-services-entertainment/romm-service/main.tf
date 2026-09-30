@@ -61,6 +61,7 @@ locals {
   romm_env_vars = {
     ROMM_DB_DRIVER              = "postgresql"
     DB_HOST                     = local.postgres_container_name
+    DB_PORT                     = 5432
     DB_NAME                     = provider::dotenv::get_by_key("ROMM_POSTGRESQL_DB", local.env_file)
     DB_USER                     = provider::dotenv::get_by_key("ROMM_POSTGRESQL_USER", local.env_file)
     DB_PASSWD                   = provider::dotenv::get_by_key("ROMM_POSTGRESQL_PASSWORD", local.env_file)
