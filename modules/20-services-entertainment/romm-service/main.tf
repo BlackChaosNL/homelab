@@ -76,7 +76,8 @@ locals {
     OIDC_SERVER_APPLICATION_URL = provider::dotenv::get_by_key("ROMM_OIDC_CLIENT_URL", local.env_file)
     OIDC_REDIRECT_URI           = provider::dotenv::get_by_key("ROMM_OIDC_REDIRECT_URL", local.env_file)
     OIDC_CLAIM_ROLES            = provider::dotenv::get_by_key("ROMM_OIDC_CLAIM_ROLES", local.env_file)
-    OIDC_ROLE_ADMIN             = provider::dotenv::get_by_key("OIDC_ROLE_ADMIN", local.env_file)
+    OIDC_ROLE_VIEWER            = provider::dotenv::get_by_key("ROMM_OIDC_ROLE_USER", local.env_file)
+    OIDC_ROLE_ADMIN             = provider::dotenv::get_by_key("ROMM_OIDC_ROLE_ADMIN", local.env_file)
     ROMM_BASE_URL               = provider::dotenv::get_by_key("ROMM_BASE_URL", local.env_file)
   }
 
