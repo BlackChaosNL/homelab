@@ -127,6 +127,7 @@ module "romm" {
   container_name = local.container_name
   image          = local.container_image
   tag            = local.container_tag
+  env_vars       = local.romm_env_vars
   volumes        = local.romm_volumes
   networks       = concat([module.romm_network.name], var.networks)
 }
