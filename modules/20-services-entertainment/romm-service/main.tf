@@ -66,6 +66,8 @@ locals {
     DB_PASSWD                   = provider::dotenv::get_by_key("ROMM_POSTGRESQL_PASSWORD", local.env_file)
     ROMM_AUTH_SECRET_KEY        = provider::dotenv::get_by_key("ROMM_SECRET_KEY", local.env_file)
     PLAYMATCH_API_ENABLED       = true
+    IGDB_CLIENT_ID              = provider::dotenv::get_by_key("ROMM_IGDB_CLIENT_ID", local.env_file)
+    IGDB_CLIENT_SECRET          = provider::dotenv::get_by_key("ROMM_IGDB_CLIENT_SECRET", local.env_file)
     DISABLE_USERPASS_LOGIN      = provider::dotenv::get_by_key("ROMM_DISABLE_LOCAL_LOGIN", local.env_file)
     OIDC_ENABLED                = provider::dotenv::get_by_key("ROMM_OIDC_ENABLED", local.env_file)
     OIDC_AUTOLOGIN              = provider::dotenv::get_by_key("ROMM_OIDC_AUTOLOGIN", local.env_file)
