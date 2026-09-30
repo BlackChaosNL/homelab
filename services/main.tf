@@ -66,3 +66,9 @@ module "arma3" {
   volume_path = "${local.root_volume}/arma3"
   networks    = [module.infrastructure_int.name]
 }
+
+module "romm" {
+  source = "${local.module_dir}/20-services-entertainment/romm-service"
+  volume_path = "${local.root_volume}/romm"
+  networks    = [module.infrastructure_int.name]
+}

@@ -9,6 +9,7 @@ output "service_definitions" {
     module.vaultwarden.service_definition,
     module.kopia.service_definition,
     module.arma3.service_definition,
+    module.romm.service_definition,
   ]
 }
 
