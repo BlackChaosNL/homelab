@@ -71,10 +71,9 @@ You get 6 usable host addresses per internal network, to find the usable address
 | Network name             | IP address range | 
 | ------------------------ | ---------------- |
 | Authentik                | .0 - .7          |
-| Pelican                  | .8 - .15         |
+| RomM                     | .8 - .15         |
 | Coder                    | .16 - .23        |
 | Tandoor                  | .24 - .31        |
-| Penpot                   | .32 - .39        |
 
 ## Configuration
 
