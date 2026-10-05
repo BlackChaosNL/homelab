@@ -7,7 +7,7 @@ variable "image_tag" {
 variable "postgres_image_tag" {
   description = "The tag for the RomM postgres container image. Default: 17-alpine"
   type        = string
-  default     = "16-alpine"
+  default     = "17-alpine"
 }
 
 variable "valkey_image_tag" {
