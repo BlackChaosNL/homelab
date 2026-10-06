@@ -172,7 +172,7 @@ output "service_definition" {
     primary_port = local.internal_port
     endpoint     = "http://${local.container_name}:${local.internal_port}"
     subdomains   = ["romm"]
-    custom_config= <<-EOT
+    caddy_config = <<-EOT
     handle /steaming/* {
       reverse_proxy ${local.webstation_container_name}:${local.webstation_internal_port}
     }
