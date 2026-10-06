@@ -7,17 +7,21 @@ terraform {
 }
 
 locals {
-  container_name          = "romm"
-  postgres_container_name = "romm-postgres"
-  valkey_container_name   = "romm-valkey"
-  container_image         = "ghcr.io/rommapp/romm"
-  postgres_image          = "docker.io/library/postgres"
-  valkey_image            = "docker.io/valkey/valkey"
-  container_tag           = var.image_tag
-  postgres_tag            = var.postgres_image_tag
-  valkey_tag              = var.valkey_image_tag
-  env_file                = "${path.module}/.env"
-  internal_port           = 8080
+  container_name            = "romm"
+  postgres_container_name   = "romm-postgres"
+  valkey_container_name     = "romm-valkey"
+  webstation_container_name = "romm-webstation"
+  container_image           = "ghcr.io/rommapp/romm"
+  postgres_image            = "docker.io/library/postgres"
+  valkey_image              = "docker.io/valkey/valkey"
+  webstation_image          = "lscr.io/linuxserver/webstation"
+  container_tag             = var.image_tag
+  postgres_tag              = var.postgres_image_tag
+  valkey_tag                = var.valkey_image_tag
+  webstation_tag            = var.webstation_image_tag
+  env_file                  = "${path.module}/.env"
+  internal_port             = 8080
+  webstation_internal_port  = 3000
 
   romm_volumes = [
     {
@@ -58,6 +62,19 @@ locals {
     },
   ]
 
+  webstation_volumes = [
+    {
+      host_path      = "${var.volume_path}/${local.container_name}/config"
+      container_path = "/romm/config"
+      read_only      = false
+    },
+        {
+      host_path      = "${var.volume_path}/${local.container_name}/library"
+      container_path = "/romm/library"
+      read_only      = false
+    },
+  ]
+
   romm_env_vars = {
     ROMM_DB_DRIVER              = "postgresql"
     DB_HOST                     = local.postgres_container_name
@@ -91,6 +108,11 @@ locals {
     POSTGRES_USER     = provider::dotenv::get_by_key("ROMM_POSTGRESQL_USER", local.env_file)
     POSTGRES_DB       = provider::dotenv::get_by_key("ROMM_POSTGRESQL_DB", local.env_file)
   }
+
+  webstation_env_vars = {
+    SUBFOLDER         = "/streaming/"
+    BROKER_SECRET     = provider::dotenv::get_by_key("ROMM_BROKER_SECRET", local.env_file)
+  }
 }
 
 module "romm_network" {
@@ -123,6 +145,16 @@ module "romm-valkey" {
   networks       = [module.romm_network.name]
 }
 
+module "romm-webstation" {
+  source         = "../../10-generic/docker-service"
+  container_name = local.webstation_container_name
+  image          = local.webstation_image
+  tag            = local.webstation_tag
+  env_vars       = local.webstation_env_vars
+  volumes        = local.webstation_volumes
+  networks       = [module.romm_network.name]
+}
+
 module "romm" {
   source         = "../../10-generic/docker-service"
   container_name = local.container_name
@@ -140,5 +172,14 @@ output "service_definition" {
     primary_port = local.internal_port
     endpoint     = "http://${local.container_name}:${local.internal_port}"
     subdomains   = ["romm"]
+    custom_config= <<-EOT
+    handle /steaming/* {
+      reverse_proxy ${local.webstation_container_name}:${local.webstation_internal_port}
+    }
+
+    handle {
+      reverse_proxy ${local.container_name}:${local.internal_port}
+    }
+    EOT
   }
 }

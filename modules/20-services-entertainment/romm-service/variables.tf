@@ -16,6 +16,12 @@ variable "valkey_image_tag" {
   default     = "9-alpine"
 }
 
+variable "webstation_image_tag" {
+  description = "The tag for the RomM webstation container image. Default: romm"
+  type        = string
+  default     = "romm"
+}
+
 variable "volume_path" {
   description = "Base directory for volumes"
   type        = string
