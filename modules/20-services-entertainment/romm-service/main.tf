@@ -21,7 +21,7 @@ locals {
   webstation_tag            = var.webstation_image_tag
   env_file                  = "${path.module}/.env"
   internal_port             = 8080
-  webstation_internal_port  = 3000
+  webstation_internal_port  = 3001
 
   romm_volumes = [
     {
