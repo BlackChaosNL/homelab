@@ -139,7 +139,7 @@ module "dawarich-sidekiq" {
 
 module "dawarich" {
   source         = "../../10-generic/docker-service"
-  container_name = local.sidekiq_container_name
+  container_name = local.container_name
   image          = local.container_image
   tag            = local.container_tag
   volumes        = local.dawarich_volumes
