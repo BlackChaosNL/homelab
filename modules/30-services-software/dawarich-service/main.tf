@@ -93,7 +93,7 @@ locals {
     POSTGRES_USER     = provider::dotenv::get_by_key("DAWARICH_POSTGRES_USER", local.env_file)
     POSTGRES_PASSWORD = provider::dotenv::get_by_key("DAWARICH_POSTGRES_PASSWORD", local.env_file)
     POSTGRES_DB       = provider::dotenv::get_by_key("DAWARICH_POSTGRES_DB", local.env_file)
-    ALLOW_IP_RANGE    = "172.17.0.32/29"
+    ALLOW_IP_RANGE    = "samenet"
   }
 }
 
