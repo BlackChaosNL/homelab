@@ -67,7 +67,7 @@ locals {
     SECRET_KEY_BASE                   = provider::dotenv::get_by_key("DAWARICH_SECRET_KEY", local.env_file)
     SELF_HOSTED                       = true
     STORE_GEODATA                     = true
-    APPLICATION_PROTOCOL              = "https"
+    APPLICATION_PROTOCOL              = "http"
     DOMAIN                            = "maps.blackchaosnl.myaddr.dev"
     RAILS_LOG_TO_STDOUT               = true
     PROMETHEUS_EXPORTER_ENABLED       = false
