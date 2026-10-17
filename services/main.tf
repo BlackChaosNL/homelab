@@ -61,6 +61,12 @@ module "kopia" {
   networks    = [module.infrastructure_int.name]
 }
 
+module "dawarich" {
+  source = "${local.module_dir}/30-services-software/dawarich-service"
+  volume_path = "${local.root_volume}/dawarich"
+  networks    = [module.infrastructure_int.name]
+}
+
 module "arma3" {
   source = "${local.module_dir}/20-services-entertainment/arma-service"
   volume_path = "${local.root_volume}/arma3"

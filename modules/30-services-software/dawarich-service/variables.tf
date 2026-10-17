@@ -1,7 +1,20 @@
+
 variable "image_tag" {
-  description = "The tag for the Traccar container image. Default: Latest"
+  description = "The tag for the Dawarich container image. Default: latest"
   type        = string
   default     = "latest"
+}
+
+variable "postgis_image_tag" {
+  description = "The tag for the postgres container image. Default: 17-alpine"
+  type        = string
+  default     = "17-alpine"
+}
+
+variable "valkey_image_tag" {
+  description = "The tag for the postgres container image. Default: 17-alpine"
+  type        = string
+  default     = "9-alpine"
 }
 
 variable "volume_path" {
