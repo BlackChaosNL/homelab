@@ -6,9 +6,9 @@ variable "image_tag" {
 }
 
 variable "postgis_image_tag" {
-  description = "The tag for the postgres container image. Default: 17-alpine"
+  description = "The tag for the postgres container image. Default: 17-3.6-alpine"
   type        = string
-  default     = "17-alpine"
+  default     = "17-3.6-alpine"
 }
 
 variable "valkey_image_tag" {
