@@ -145,7 +145,7 @@ module "dawarich" {
   volumes        = local.dawarich_volumes
   env_vars       = merge(local.dawarich_common_env_vars, local.dawarich_env_vars)
   networks       = concat([module.dawarich_network.name], var.networks)
-  entrypoint     = [ "sidekiq-entrypoint.sh" ]
+  entrypoint     = [ "web-entrypoint.sh" ]
   command        = [ "bin/rails server -p 3000 -b ::" ]
 }
 
