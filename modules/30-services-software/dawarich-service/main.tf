@@ -93,8 +93,27 @@ locals {
     POSTGRES_USER     = provider::dotenv::get_by_key("DAWARICH_POSTGRES_USER", local.env_file)
     POSTGRES_PASSWORD = provider::dotenv::get_by_key("DAWARICH_POSTGRES_PASSWORD", local.env_file)
     POSTGRES_DB       = provider::dotenv::get_by_key("DAWARICH_POSTGRES_DB", local.env_file)
-    ALLOW_IP_RANGE    = "samenet"
   }
+
+  postgis_settings = <<-EOT
+  # TYPE  DATABASE        USER            ADDRESS                 METHOD
+  # "local" is for Unix domain socket connections only
+  local   all             all                                     trust
+  # IPv4 local connections:
+  host    all             all             172.17.0.32/29          trust
+  # IPv6 local connections:
+  host    all             all             ::1/128                 trust
+  # Allow replication connections from localhost, by a user with the
+  # replication privilege.
+  local   replication     all                                     trust
+  host    replication     all             127.0.0.1/32            trust
+  host    replication     all             ::1/128                 trust
+  EOT
+}
+
+resource "local_file" "caddyfile" {
+  content  = local.postgis_settings
+  filename = "${var.volume_path}/${local.container_name}/postgres/data/pg_hba.conf"
 }
 
 module "dawarich_network" {
