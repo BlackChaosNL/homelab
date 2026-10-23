@@ -11,7 +11,7 @@ locals {
   image          = "ghcr.io/techarohq/anubis"
   tag            = var.image_tag
 
-  botPolicies = <<-EOT
+  bot_policies = <<-EOT
   bots:
     - name: unblock-subdomains
       headers_regex:
@@ -22,9 +22,9 @@ locals {
   EOT
 }
 
-resource "local_file" "botPolicies.yaml" {
-  content  = local.botPolicies
-  filename = "${var.volume_path}/${local.container_name}/botPolicies.yaml"
+resource "local_file" "bot_policies_file" {
+  content  = local.bot_policies
+  filename = "${var.volume_path}/${local.container_name}/bot_policies.yaml"
 }
 
 module "anubis" {
@@ -39,7 +39,7 @@ module "anubis" {
   }
   volumes        = [
     {
-      host_path      = "${var.volume_path}/${local.container_name}/botPolicies.yaml"
+      host_path      = "${var.volume_path}/${local.container_name}/bot_policies.yaml"
       container_path = "/etc/anubis/botPolicies.yaml"
       read_only      = true
     },
