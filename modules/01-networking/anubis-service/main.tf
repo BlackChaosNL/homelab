@@ -12,7 +12,7 @@ locals {
   tag            = var.image_tag
   volumes = [
     {
-      host_path      = "botPolicies.yaml"
+      host_path      = "${path.module}/botPolicies.yaml"
       container_path = "/etc/anubis/botPolicies.yaml"
       read_only      = true
     },
