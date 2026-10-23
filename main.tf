@@ -22,6 +22,7 @@ module "caddy-ext" {
 
 module "anubis" {
   source = "./modules/01-networking/anubis-service"
+  volume_path = local.volume_host
 }
 
 module "caddy-int" {

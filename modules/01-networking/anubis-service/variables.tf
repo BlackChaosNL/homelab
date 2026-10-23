@@ -3,3 +3,8 @@ variable "image_tag" {
   type        = string
   default     = "latest"
 }
+
+variable "volume_path" {
+  description = "Base directory for volumes"
+  type        = string
+}
