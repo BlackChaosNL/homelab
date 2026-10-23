@@ -11,7 +11,7 @@
 ## /usr/share/docs/anubis/data or in the tarball you extracted Anubis from.
 
 bots:
-  - name: unblock-dawarich
+  - name: unblock-subdomains
     headers_regex:
       Host: ^(tandoor|maps)\.blackchaosnl\.myaddr\.dev$
     action: ALLOW
